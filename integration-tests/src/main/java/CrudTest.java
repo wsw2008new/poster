@@ -14,9 +14,9 @@ import javax.ws.rs.client.WebTarget;
 
 
 /**
- * this is test class for a testing with the jersey test framework
- * I don't know what it is testing it is just an example
- */
+* this is test class for a testing with the jersey test framework
+* I don't know what it is testing it is just an example
+*/
 public class CrudTest extends JerseyTest {
     @Override
     protected TestContainerFactory getTestContainerFactory() {
