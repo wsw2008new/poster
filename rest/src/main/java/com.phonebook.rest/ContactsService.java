@@ -4,7 +4,7 @@ import com.phonebook.view.ContactView;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-
+//hello
 @Path(value = "hello")
 public class ContactsService {
 
