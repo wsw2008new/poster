@@ -1,6 +1,6 @@
-package com.phonebook.rest;
+package org.pti.rest;
 
-import com.phonebook.view.ContactView;
+import org.pti.view.ContactView;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
