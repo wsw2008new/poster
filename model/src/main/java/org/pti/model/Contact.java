@@ -1,4 +1,4 @@
-package com.phonebook;
+package org.pti.model;
 
 
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.phonebook.view;
+package org.pti.view;
 
-import com.phonebook.Contact;
+import org.pti.model.*;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>phonebook</artifactId>
-        <groupId>com.kozubal</groupId>
+        <artifactId>poster</artifactId>
+        <groupId>org.pti</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <packaging>war</packaging>
@@ -16,17 +16,17 @@
     <dependencies>
         <dependency>
             <!--should be used only in runtime-->
-            <groupId>com.kozubal</groupId>
+            <groupId>org.pti</groupId>
             <artifactId>model</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>runtime</scope>
         </dependency>
         
         <dependency>
-            <groupId>com.kozubal</groupId>
+            <groupId>org.pti</groupId>
             <artifactId>views</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <!--this dependency should not be used in the rest module-->
+            <version>${project.version}</version>
+            <!--this dependency should not be used in the org.pti.rest module-->
             <!--<exclusions>-->
                 <!--<exclusion>-->
                     <!--<groupId>com.kozubal</groupId>-->

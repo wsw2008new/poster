@@ -7,5 +7,3 @@ we have following tasks now:
 5. rest url mapping (model ? operations - ?  post delete put)
 6. create test for rest endpoint
 7. spring security ( add module spring as dependency )
-
-8. New :)
