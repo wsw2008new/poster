@@ -1,15 +1,15 @@
 package org.pti.rest;
 
-import org.pti.view.ContactView;
-
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-//hello
-@Path(value = "/contacts")
+
+import org.pti.poster.view.PostView;
+
+@Path(value = "/post")
 public class ContactsService {
 
-    @Path("/hi")
-    public ContactView getMsg(@PathParam("key") String key) {
-        return new ContactView(key, "kozubal", "068-017-17-57");
-    }
+	@Path("/get")
+	public PostView getPost(@PathParam("id") String id) {
+		return new PostView("Hello World!");
+	}
 }
