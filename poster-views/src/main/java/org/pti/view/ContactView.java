@@ -23,13 +23,13 @@ public class ContactView {
     }
     
     @GET
-    @Path("phone")
+    @Path("number")
     public String getNumber(){
         return contact.getNumber();
     }
     
     @GET
-    @Path("key")
+    @Path("nickname")
     public String getNickName(){
         return contact.getNickName();
     }

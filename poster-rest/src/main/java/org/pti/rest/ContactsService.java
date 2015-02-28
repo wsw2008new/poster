@@ -5,10 +5,10 @@ import org.pti.view.ContactView;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 //hello
-@Path(value = "hello")
+@Path(value = "/contacts")
 public class ContactsService {
 
-    @Path("/")
+    @Path("/hi")
     public ContactView getMsg(@PathParam("key") String key) {
         return new ContactView(key, "kozubal", "068-017-17-57");
     }
