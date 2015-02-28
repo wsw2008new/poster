@@ -1,0 +1,1 @@
+1. Please always fix dependency versions in POMs, so you will avoid dependency conflicts during development
