@@ -1,7 +1,7 @@
 package org.pti.poster;
 
 
-import org.pti.model.User;
+import org.pti.poster.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -11,7 +11,6 @@ import java.util.List;
 public class UserService {
     
     public List<User> getAllUsers(){
-        User.UserBuilder builder = User.builder();
-        return Arrays.asList(builder.userName("vova").build());
+        return Arrays.asList(new User());
     }
 }

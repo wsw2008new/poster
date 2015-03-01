@@ -16,22 +16,6 @@
 			<artifactId>javaee-web-api</artifactId>
 		</dependency>
 
-		<!-- REST framework -->
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-server</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-jackson</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.pti</groupId>
 			<artifactId>poster-model</artifactId>
