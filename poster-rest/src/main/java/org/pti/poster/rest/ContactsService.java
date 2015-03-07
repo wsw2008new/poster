@@ -1,4 +1,4 @@
-package org.pti.rest;
+package org.pti.poster.rest;
 
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
