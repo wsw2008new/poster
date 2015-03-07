@@ -7,3 +7,5 @@ we have following tasks now:
 5. rest url mapping (model ? operations - ?  post delete put)
 6. create test for rest endpoint
 7. spring security ( add module spring as dependency )
+
+Documentation: https://drive.google.com/folderview?id=0B5KXxwMdmpt1MDQ4bVJNU2xDNms&usp=sharing
