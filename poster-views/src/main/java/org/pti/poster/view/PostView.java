@@ -6,6 +6,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.pti.poster.model.Post;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Produces({ MediaType.APPLICATION_JSON })
 public class PostView {
@@ -15,8 +17,7 @@ public class PostView {
 		this.post = new Post(text);
 	}
 
-	@GET
-	@Path("id")
+	@RequestMapping(value = "name", method = RequestMethod.GET)
 	public String getName() {
 		return post.getId();
 	}
@@ -24,7 +25,7 @@ public class PostView {
 	@GET
 	@Path("text")
 	public String getNumber() {
-		return post.getText();
+		return "hello";
 	}
 
 	@GET

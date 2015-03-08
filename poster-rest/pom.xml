@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>poster</artifactId>
-		<groupId>org.pti</groupId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-	<packaging>war</packaging>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>poster</artifactId>
+        <groupId>org.pti</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <packaging>war</packaging>
 
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>poster-rest</artifactId>
-	<name>poster-rest</name>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>poster-rest</artifactId>
+    <name>poster-rest</name>
 
 
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.pti</groupId>
             <artifactId>poster-service</artifactId>
@@ -21,11 +21,15 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.pti</groupId>
             <artifactId>poster-views</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
 
         <dependency>
             <groupId>org.pti</groupId>
@@ -54,18 +58,63 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
         </dependency>
-
     </dependencies>
-    
-	<build>
-		<finalName>poster-rest</finalName>
-	</build>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <build>
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jar-plugin</artifactId>-->
+                <!--<version>2.2</version>-->
+            <!--</plugin>-->
+
+            <!--<plugin>-->
+                <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                <!--<version>2.5.3</version>-->
+                <!--<configuration>-->
+                    <!--&lt;!&ndash;<archive>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<manifest>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<mainClass>hello.Application</mainClass>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</manifest>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</archive>&ndash;&gt;-->
+                    <!--<descriptorRefs>-->
+                        <!--<descriptorRef>jar-with-dependencies</descriptorRef>-->
+                    <!--</descriptorRefs>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>single</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<artifactId>maven-failsafe-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>integration-test</goal>-->
+                            <!--<goal>verify</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+        <finalName>poster-rest</finalName>
+    </build>
 </project>
