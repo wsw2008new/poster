@@ -10,7 +10,6 @@
     <modules>
         <module>poster-rest</module>
         <module>poster-model</module>
-        <module>poster-views</module>
         <module>poster-integration-tests</module>
         <module>poster-dao</module>
         <module>poster-service</module>
