@@ -5,7 +5,7 @@
          id="WebApp_ID" version="2.5">
 
     <display-name>rest</display-name>
-<!--web.xml is not necessary when you are using spring boot-->
+    <!--web.xml is not necessary when you are using spring boot-->
     <context-param>
         <param-name>contextClass</param-name>
         <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
