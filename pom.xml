@@ -54,6 +54,12 @@
                 <version>${couchbase.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.mangofactory</groupId>
+                <artifactId>swagger-springmvc</artifactId>
+                <version>0.9.5</version>
+            </dependency>
+
             <!-- for integration module -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
