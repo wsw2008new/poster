@@ -1,4 +1,4 @@
-package hello;
+package org.pti.poster.boot;
 
 
 import org.pti.poster.SpringApplicationConfiguration;
