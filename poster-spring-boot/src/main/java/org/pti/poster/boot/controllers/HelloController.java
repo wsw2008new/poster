@@ -1,4 +1,4 @@
-package org.pti.poster.controllers;
+package org.pti.poster.boot.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
