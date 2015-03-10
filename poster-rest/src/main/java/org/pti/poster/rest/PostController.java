@@ -3,11 +3,11 @@ package org.pti.poster.rest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("api")
+@RequestMapping("/api")
 @RestController
-public class ContactsService {
+public class PostController {
 
-    @RequestMapping("health")
+    @RequestMapping("/health")
     public  String test(){
         return "Up";
     }

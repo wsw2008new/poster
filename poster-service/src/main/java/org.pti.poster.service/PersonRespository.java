@@ -1,4 +1,4 @@
-package org.pti.poster;
+package org.pti.poster.service;
 
 
 import org.pti.poster.model.Person;
