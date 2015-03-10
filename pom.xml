@@ -23,6 +23,7 @@
         <lombok.version>1.14.4</lombok.version>
         <couchbase.version>3.0.0-beta2</couchbase.version>
         <lombok.version>1.14.4</lombok.version>
+        <jodatime.version>2.7</jodatime.version>
         <javaee-web-api-version>7.0</javaee-web-api-version>
     </properties>
 
@@ -58,6 +59,12 @@
                 <groupId>com.mangofactory</groupId>
                 <artifactId>swagger-springmvc</artifactId>
                 <version>0.9.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${jodatime.version}</version>
             </dependency>
 
             <!-- for integration module -->
