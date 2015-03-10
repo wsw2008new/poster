@@ -1,4 +1,4 @@
-package org.pti.poster.service;
+package org.pti.poster;
 
 
 import com.mangofactory.swagger.plugin.EnableSwagger;
