@@ -1,4 +1,4 @@
-package org.pti.poster.controllers;
+package org.pti.poster.boot.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class HelloController {
     
-    @RequestMapping("/greeting")
+    @RequestMapping("/hello")
     public String index() {
         return "Greetings from Spring Boot!";
     }
