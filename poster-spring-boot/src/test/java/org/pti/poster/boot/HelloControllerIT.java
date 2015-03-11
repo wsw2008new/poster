@@ -31,7 +31,7 @@ public class HelloControllerIT {
 
 	@Before
 	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:" + port + "/api/health");
+		this.base = new URL("http://localhost:" + port + "/api/system/health");
 		template = new TestRestTemplate();
 	}
 

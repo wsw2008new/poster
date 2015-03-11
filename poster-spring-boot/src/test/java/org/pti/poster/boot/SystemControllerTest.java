@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.pti.poster.rest.SystemController;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -31,7 +32,7 @@ public class SystemControllerTest {
 
 	@Test
 	public void getHello() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/api/health").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(MockMvcRequestBuilders.request(HttpMethod.GET, "/api/system/health"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(equalTo("up")));
 	}
