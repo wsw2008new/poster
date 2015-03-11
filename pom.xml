@@ -8,11 +8,11 @@
     <artifactId>poster</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>poster-rest</module>
         <module>poster-model</module>
-        <module>poster-integration-tests</module>
-        <module>poster-dao</module>
+        <module>poster-repository</module>
         <module>poster-service</module>
+        <module>poster-rest</module>
+        <module>poster-integration-tests</module>
         <module>poster-spring-boot</module>
     </modules>
     <properties>

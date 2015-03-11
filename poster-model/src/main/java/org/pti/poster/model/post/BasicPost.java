@@ -6,7 +6,7 @@ import org.joda.time.DateTime;
 
 public class BasicPost implements Post {
 
-	public final static PostType type=PostType.BASIC_POST;
+	public final static PostType TYPE=PostType.BASIC_POST;
 
 	@Getter
 	private String id;

@@ -1,4 +1,4 @@
-package org.pti.poster.dao;
+package org.pti.poster.repository.dao;
 
 
 import com.mongodb.MongoClient;
