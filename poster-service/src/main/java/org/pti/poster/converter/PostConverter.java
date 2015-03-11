@@ -1,0 +1,32 @@
+package org.pti.poster.converter;
+
+import org.pti.poster.model.post.BasicPost;
+import org.springframework.http.HttpInputMessage;
+import org.springframework.http.HttpOutputMessage;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.AbstractHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.converter.HttpMessageNotWritableException;
+
+import java.io.IOException;
+
+public class PostConverter extends AbstractHttpMessageConverter<BasicPost> {
+	public PostConverter(MediaType supportedType){
+		super(supportedType);
+	}
+
+	@Override
+	protected boolean supports(Class<?> aClass) {
+		return BasicPost.class.equals(aClass);
+	}
+
+	@Override
+	protected BasicPost readInternal(Class<? extends BasicPost> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
+		return new BasicPost("1","Hello world!");
+	}
+
+	@Override
+	protected void writeInternal(BasicPost basicPost, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
+
+	}
+}
