@@ -12,10 +12,6 @@ public class PostController {
 	@Autowired
 	PostService postService;
 
-	@RequestMapping("/health")
-	public String test() {
-		return "Up";
-	}
 
 	@RequestMapping(value = "/get", params = {"id"}, method = RequestMethod.GET)
 	public
