@@ -1,5 +1,6 @@
 package org.pti.poster.converter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pti.poster.model.post.BasicPost;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -9,9 +10,10 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class PostConverter extends AbstractHttpMessageConverter<BasicPost> {
-	public PostConverter(MediaType supportedType){
+	public PostConverter(MediaType supportedType) {
 		super(supportedType);
 	}
 
@@ -22,7 +24,10 @@ public class PostConverter extends AbstractHttpMessageConverter<BasicPost> {
 
 	@Override
 	protected BasicPost readInternal(Class<? extends BasicPost> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
-		return new BasicPost("1","Hello world!");
+		ObjectMapper mapper = new ObjectMapper();
+		Map jsonMap = mapper.readValue(httpInputMessage.getBody(), Map.class);
+		String text = (String) jsonMap.get("text");
+		return new BasicPost("1", text);
 	}
 
 	@Override

@@ -32,6 +32,7 @@ public class InMemoryPostRepository implements PostRepository {
 		String id= UUID.randomUUID().toString();
 		Post savedPost= new BasicPost(id, post.getText());
 		allPosts.put(id,savedPost);
+		System.out.println(savedPost.toString());
 
 		return savedPost;
 	}

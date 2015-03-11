@@ -22,4 +22,9 @@ public class BasicPost implements Post {
 		this.text = text;
 		this.date = new DateTime();
 	}
+
+	@Override
+	public String toString(){
+		return "#"+id+": "+text;
+	}
 }
