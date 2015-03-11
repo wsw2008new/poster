@@ -25,6 +25,7 @@
         <lombok.version>1.14.4</lombok.version>
         <jodatime.version>2.7</jodatime.version>
         <javaee-web-api-version>7.0</javaee-web-api-version>
+        <jackson.mapper.asl.version>1.9.13</jackson.mapper.asl.version>
     </properties>
 
     <packaging>pom</packaging>
@@ -67,19 +68,27 @@
                 <version>${jodatime.version}</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${jackson.mapper.asl.version}</version>
+            </dependency>
+
+
             <!-- for integration module -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>${testng.version}</version>
             </dependency>
-            
+
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-web-api</artifactId>
@@ -88,7 +97,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
+
     <build>
         <plugins>
             <plugin>
