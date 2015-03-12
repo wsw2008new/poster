@@ -18,4 +18,10 @@ public class UnregisteredPost extends AbstractPost {
 	public String getId() {
 		return super.getId();
 	}
+
+	@JsonIgnore
+	@Override
+	public String getDate() {
+		return super.getDate();
+	}
 }
