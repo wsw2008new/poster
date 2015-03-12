@@ -32,8 +32,8 @@ public class RegisteredPostConverter extends AbstractHttpMessageConverter<Regist
 
 	@Override
 	protected void writeInternal(RegisteredPost post, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
-		PostFilter postFilter=new PostFilter();
-		FilterProvider filters=new SimpleFilterProvider().addFilter("postFilter",postFilter);
+		PostFilter postFilter = new PostFilter();
+		FilterProvider filters = new SimpleFilterProvider().addFilter("postFilter", postFilter);
 
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writer(filters).writeValue(httpOutputMessage.getBody(), post);
