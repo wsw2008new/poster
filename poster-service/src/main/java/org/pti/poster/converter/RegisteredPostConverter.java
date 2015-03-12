@@ -1,10 +1,9 @@
 package org.pti.poster.converter;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.ser.FilterProvider;
-import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.pti.poster.filter.PostFilter;
-import org.pti.poster.model.post.Post;
 import org.pti.poster.model.post.RegisteredPost;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;

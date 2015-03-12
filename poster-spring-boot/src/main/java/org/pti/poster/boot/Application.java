@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Import;
 @Import(value = SpringApplicationConfiguration.class)
 public class Application extends WebMvcAutoConfiguration {
 
-    public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
-    }
+	public static void main(String[] args) {
+		ApplicationContext ctx = SpringApplication.run(Application.class, args);
+	}
 
 }
