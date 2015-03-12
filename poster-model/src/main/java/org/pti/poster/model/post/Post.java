@@ -9,7 +9,7 @@ public interface Post {
 
 	public String getId();
 
-	public DateTime getDate();
+	public String getDate();
 
 	public String getText();
 }

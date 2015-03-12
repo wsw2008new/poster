@@ -3,6 +3,8 @@ package org.pti.poster.model.post;
 import lombok.Getter;
 import org.codehaus.jackson.map.annotate.JsonFilter;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 @JsonFilter("postFilter")
 public abstract class AbstractPost implements Post {
@@ -12,15 +14,22 @@ public abstract class AbstractPost implements Post {
 	@Getter
 	private String id;
 	@Getter
-	protected DateTime date;
+	protected String date;
 	@Getter
 	protected String text;
 
-	public AbstractPost(PostType type, String id, String text){
-		this.type=type;
-		this.id=id;
-		this.text=text;
-		this.date = new DateTime();
+	public AbstractPost(PostType type, String id, String text) {
+		this.type = type;
+		this.id = id;
+		this.text = text;
+
+		setDate();
+	}
+
+	private void setDate() {
+		DateTime date = new DateTime();
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM, yyyy");
+		this.date = date.toString(fmt);
 	}
 
 	@Override
