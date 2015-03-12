@@ -1,10 +1,10 @@
 package org.pti.poster.rest;
 
-import org.pti.poster.model.post.BasicPost;
 import org.pti.poster.model.post.Post;
+import org.pti.poster.model.post.RegisteredPost;
+import org.pti.poster.model.post.UnregisteredPost;
 import org.pti.poster.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api/post")
@@ -16,14 +16,14 @@ public class PostController {
 	@RequestMapping(value = "/get", params = {"id"}, method = RequestMethod.GET)
 	public
 	@ResponseBody
-	BasicPost getPost(@RequestParam(value = "id") String id) {
-		return (BasicPost) postService.findPostById(id);
+	Post getPost(@RequestParam(value = "id") String id) {
+		return postService.findPostById(id);
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public
 	@ResponseBody
-	BasicPost save(@RequestBody BasicPost post) {
-		return (BasicPost) postService.savePost(post);
+	Post save(@RequestBody UnregisteredPost post) {
+		return postService.savePost(post);
 	}
 }

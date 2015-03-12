@@ -5,11 +5,11 @@ import org.joda.time.DateTime;
 
 public interface Post {
 
+	public PostType getType();
+
 	public String getId();
 
 	public DateTime getDate();
-
-	public void setText(String text);
 
 	public String getText();
 }

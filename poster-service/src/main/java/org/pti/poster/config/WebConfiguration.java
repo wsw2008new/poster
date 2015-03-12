@@ -1,6 +1,7 @@
 package org.pti.poster.config;
 
-import org.pti.poster.converter.PostConverter;
+import org.pti.poster.converter.RegisteredPostConverter;
+import org.pti.poster.converter.UnregisteredPostConverter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> httpMessageConverters) {
-		httpMessageConverters.add(new PostConverter(MediaType.APPLICATION_JSON));
+		httpMessageConverters.add(new RegisteredPostConverter(MediaType.APPLICATION_JSON));
+		httpMessageConverters.add(new UnregisteredPostConverter(MediaType.APPLICATION_JSON));
 	}
 }
