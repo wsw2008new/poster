@@ -4,7 +4,7 @@ public class RegisteredPost extends AbstractPost {
 
 	public final static PostType TYPE = PostType.REGISTERED_POST;
 
-	public RegisteredPost(String id, String text) {
-		super(TYPE, id, text);
+	public RegisteredPost(String id, String userId, String text) {
+		super(TYPE, id, userId, text);
 	}
 }

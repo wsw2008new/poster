@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0"})
-public class HelloControllerIT {
+public class SystemControllerIT {
 
     @Value("${local.server.port}")
     private int port;

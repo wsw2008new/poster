@@ -27,11 +27,9 @@ public class InMemoryPostRepository implements PostRepository {
 
 	@Override
 	public Post savePost(Post post) {
-		// If everything is OK, DB should return ID of a new post entry, so return new RegisteredPost with this ID
 		String id = UUID.randomUUID().toString();
-		Post savedPost = new RegisteredPost(id, post.getText());
+		Post savedPost = new RegisteredPost(id, post.getUserId(), post.getText());
 		allPosts.put(id, savedPost);
-		System.out.println(savedPost.toString());
 
 		return savedPost;
 	}

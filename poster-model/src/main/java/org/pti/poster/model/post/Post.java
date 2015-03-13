@@ -14,4 +14,6 @@ public interface Post {
 	public String getDate();
 
 	public String getText();
+
+	public String getUserId();
 }
