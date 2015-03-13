@@ -27,7 +27,8 @@ public class UnregisteredPostConverter extends AbstractHttpMessageConverter<Unre
 		ObjectMapper mapper = new ObjectMapper();
 		Map jsonMap = mapper.readValue(httpInputMessage.getBody(), Map.class);
 		String text = (String) jsonMap.get("text");
-		return new UnregisteredPost(text);
+		String userId = (String) jsonMap.get("userId");
+		return new UnregisteredPost(userId, text);
 	}
 
 	@Override
