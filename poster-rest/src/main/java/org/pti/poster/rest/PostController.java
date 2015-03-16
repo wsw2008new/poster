@@ -7,9 +7,12 @@ import org.pti.poster.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/api/post")
 @RestController
 public class PostController {
+
 	@Autowired
 	PostService postService;
 
@@ -18,6 +21,13 @@ public class PostController {
 	@ResponseBody
 	Post getPost(@RequestParam(value = "id") String id) {
 		return postService.findPostById(id);
+	}
+
+	@RequestMapping(value = "/get", params = {"last"}, method = RequestMethod.GET)
+	public
+	@ResponseBody
+	List<Post> getLastPosts(@RequestParam(value = "last") int number) {
+		return postService.getLastPosts(number);
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

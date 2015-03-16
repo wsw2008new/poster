@@ -12,74 +12,53 @@
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+
+    <script src="./src/users/Users.js"></script>
+    <script src="./src/users/UserController.js"></script>
+    <script src="./src/users/UserService.js"></script>
+
+    <script>
+        angular.module('gridListDemo1', ['ngMaterial', 'ngResource'])
+                .controller('AppCtrl', function ($scope) {
+                    $scope.items = {'adam': 10, 'amalie': 12};
+                })
+                .factory("Post", function ($resource) {
+                    return $resource("/api/posts/:id");
+                })
+                .controller("PostIndexCtrl", function ($scope, Post) {
+                    Post.query(function (data) {
+                        $scope.posts = data;
+                    });
+                });
+    </script>
 </head>
 
-<body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
+<body ng-app="gridListDemo1">
 
-<md-toolbar layout="row">
-    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu"></md-icon>
-    </md-button>
-    <h1>Angular Material - Starter App</h1>
-</md-toolbar>
-
-<div flex layout="row">
-
-    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-        <md-list>
-            <md-item ng-repeat="it in ul.users">
-                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                    <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-                    {{it.name}}
-                </md-button>
-            </md-item>
-        </md-list>
-    </md-sidenav>
-
-    <md-content flex id="content">
-        <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-        <h2>{{ul.selected.name}}</h2>
-
-        <p>{{ul.selected.content}}</p>
-
-        <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-            <md-icon md-svg-icon="share"></md-icon>
-        </md-button>
-    </md-content>
-
+<div ng-controller="AppCtrl as appCtrl">
+    <md-grid-list
+            md-cols-sm="2" md-cols-md="2" md-cols-gt-md="6"
+            md-row-height-gt-md="1:1"
+            md-gutter-gt-sm="8px" class="gridListdemoBasicUsage">
+        <md-grid-tile ng-repeat="(name, age) in items" class="gray">
+            <md-grid-tile-footer>
+                <h3>{{name}}</h3>
+            </md-grid-tile-footer>
+            Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at, in lobortis
+            conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale
+            omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam
+            praesent reformidans no. Sed laudem aliquam ne.
+            Facete delenit argumentum cum at. Pro rebum nostrum contentiones ad. Mel exerci tritani maiorum at,
+            mea te audire phaedrum, mel et nibh aliquam. Malis causae equidem vel eu. Noster melius vis ea, duis
+            alterum oporteat ea sea. Per cu vide munere fierent.
+        </md-grid-tile>
+    </md-grid-list>
 </div>
-
-<script src="./bower_components/angular/angular.js"></script>
-<script src="./bower_components/angular-animate/angular-animate.js"></script>
-<script src="./bower_components/angular-aria/angular-aria.js"></script>
-<script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
-
-<script src="./src/users/Users.js"></script>
-<script src="./src/users/UserController.js"></script>
-<script src="./src/users/UserService.js"></script>
-
-<script type="text/javascript">
-
-    angular
-            .module('starterApp', ['ngMaterial', 'users'])
-            .config(function ($mdThemingProvider, $mdIconProvider) {
-
-                $mdIconProvider
-                        .defaultIconSet("./assets/svg/avatars.svg", 128)
-                        .icon("menu", "./assets/svg/menu.svg", 24)
-                        .icon("share", "./assets/svg/share.svg", 24)
-                        .icon("google_plus", "./assets/svg/google_plus.svg", 512)
-                        .icon("hangouts", "./assets/svg/hangouts.svg", 512)
-                        .icon("twitter", "./assets/svg/twitter.svg", 512)
-                        .icon("phone", "./assets/svg/phone.svg", 512);
-
-                $mdThemingProvider.theme('default')
-                        .primaryPalette('brown')
-                        .accentPalette('red');
-
-            });
-
-</script>
-
 </body>
 </html>

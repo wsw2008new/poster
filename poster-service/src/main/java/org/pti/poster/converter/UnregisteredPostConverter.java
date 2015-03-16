@@ -1,6 +1,7 @@
 package org.pti.poster.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.pti.poster.config.JacksonFilterConfig;
 import org.pti.poster.model.post.UnregisteredPost;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -13,8 +14,11 @@ import java.io.IOException;
 import java.util.Map;
 
 public class UnregisteredPostConverter extends AbstractHttpMessageConverter<UnregisteredPost> {
-	public UnregisteredPostConverter(MediaType supportedType) {
+	private JacksonFilterConfig filterConfig;
+
+	public UnregisteredPostConverter(JacksonFilterConfig filterConfig,MediaType supportedType) {
 		super(supportedType);
+		this.filterConfig=filterConfig;
 	}
 
 	@Override

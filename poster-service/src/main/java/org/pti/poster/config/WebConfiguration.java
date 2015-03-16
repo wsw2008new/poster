@@ -1,7 +1,10 @@
 package org.pti.poster.config;
 
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import org.pti.poster.converter.RegisteredPostConverter;
 import org.pti.poster.converter.UnregisteredPostConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -16,9 +19,12 @@ import java.util.List;
 @ComponentScan
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
+	@Autowired
+	JacksonFilterConfig filterConfig;
+
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> httpMessageConverters) {
-		httpMessageConverters.add(new RegisteredPostConverter(MediaType.APPLICATION_JSON));
-		httpMessageConverters.add(new UnregisteredPostConverter(MediaType.APPLICATION_JSON));
+		httpMessageConverters.add(new RegisteredPostConverter(filterConfig, MediaType.APPLICATION_JSON));
+		httpMessageConverters.add(new UnregisteredPostConverter(filterConfig, MediaType.APPLICATION_JSON));
 	}
 }

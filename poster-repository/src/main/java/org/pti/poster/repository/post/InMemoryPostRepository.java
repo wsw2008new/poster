@@ -5,9 +5,7 @@ import org.pti.poster.model.post.RegisteredPost;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Repository("inMemoryPostRepository")
 public class InMemoryPostRepository implements PostRepository {
@@ -17,12 +15,28 @@ public class InMemoryPostRepository implements PostRepository {
 
 	@PostConstruct
 	public void init() {
-		allPosts = new HashMap<>();
+		allPosts = new LinkedHashMap<>();
 	}
 
 	@Override
 	public Post getPostById(String id) {
 		return allPosts.get(id);
+	}
+
+	@Override
+	public List<Post> getLastPosts(int number) {
+		List<Post> result = new ArrayList<>();
+		List<Map.Entry<String, Post>> entryList = new ArrayList<>(allPosts.entrySet());
+
+		int endIndex = entryList.size();
+		int startIndex = endIndex - number;
+
+		List<Map.Entry<String, Post>> lastEntries = entryList.subList(startIndex, endIndex);
+		for (Map.Entry<String, Post> entry : lastEntries) {
+			result.add(entry.getValue());
+		}
+
+		return result;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @Service("PostService")
 public class PostService {
@@ -23,6 +24,10 @@ public class PostService {
 
 	public Post findPostById(String id) {
 		return postRepository.getPostById(id);
+	}
+
+	public List<Post> getLastPosts(int number) {
+		return postRepository.getLastPosts(number);
 	}
 
 	public Post savePost(Post post) {

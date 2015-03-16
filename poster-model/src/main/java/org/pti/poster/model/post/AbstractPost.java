@@ -1,8 +1,6 @@
 package org.pti.poster.model.post;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
