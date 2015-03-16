@@ -1,6 +1,7 @@
 package org.pti.poster.rest;
 
 import org.pti.poster.model.post.Post;
+import org.pti.poster.model.post.PostCollection;
 import org.pti.poster.model.post.RegisteredPost;
 import org.pti.poster.model.post.UnregisteredPost;
 import org.pti.poster.service.post.PostService;
@@ -26,7 +27,7 @@ public class PostController {
 	@RequestMapping(value = "/get", params = {"last"}, method = RequestMethod.GET)
 	public
 	@ResponseBody
-	List<Post> getLastPosts(@RequestParam(value = "last") int number) {
+	PostCollection getLastPosts(@RequestParam(value = "last") int number) {
 		return postService.getLastPosts(number);
 	}
 

@@ -1,6 +1,7 @@
 package org.pti.poster.service.post;
 
 import org.pti.poster.model.post.Post;
+import org.pti.poster.model.post.PostCollection;
 import org.pti.poster.repository.post.PostRepository;
 import org.pti.poster.repository.post.PostRepositoryFactory;
 import org.pti.poster.repository.post.PostRepositoryType;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @Service("PostService")
 public class PostService {
@@ -26,7 +26,7 @@ public class PostService {
 		return postRepository.getPostById(id);
 	}
 
-	public List<Post> getLastPosts(int number) {
+	public PostCollection getLastPosts(int number) {
 		return postRepository.getLastPosts(number);
 	}
 

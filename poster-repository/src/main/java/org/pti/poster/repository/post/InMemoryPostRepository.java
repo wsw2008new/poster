@@ -1,6 +1,7 @@
 package org.pti.poster.repository.post;
 
 import org.pti.poster.model.post.Post;
+import org.pti.poster.model.post.PostCollection;
 import org.pti.poster.model.post.RegisteredPost;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,7 @@ public class InMemoryPostRepository implements PostRepository {
 	}
 
 	@Override
-	public List<Post> getLastPosts(int number) {
+	public PostCollection getLastPosts(int number) {
 		List<Post> result = new ArrayList<>();
 		List<Map.Entry<String, Post>> entryList = new ArrayList<>(allPosts.entrySet());
 
@@ -36,7 +37,7 @@ public class InMemoryPostRepository implements PostRepository {
 			result.add(entry.getValue());
 		}
 
-		return result;
+		return new PostCollection(result);
 	}
 
 	@Override
