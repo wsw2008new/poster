@@ -49,6 +49,15 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-rest-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.mangofactory</groupId>

@@ -11,9 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-/**
- * @author Moritz Schulze
- */
+
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan

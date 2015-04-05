@@ -1,8 +1,9 @@
-package org.pti.poster.auth.server;
+package org.pti.poster.auth.server.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -12,15 +13,18 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
 
-/**
- * @author Moritz Schulze
- */
 @Configuration
 @EnableAuthorizationServer
 public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
+	private static final String RESOURCE_API = "api";
+
     @Autowired
     private DataSource dataSource;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
 
     @Bean
     public TokenStore tokenStore() {
@@ -30,6 +34,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore());
+		endpoints.authenticationManager(authenticationManager);
     }
 
     @Override
@@ -37,14 +42,14 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
         clients.inMemory()
                .withClient("curl")
                .authorities("ROLE_ADMIN")
-               .resourceIds("jaxenter")
+               .resourceIds(RESOURCE_API)
                .scopes("read", "write")
                .authorizedGrantTypes("client_credentials")
                .secret("password")
                .and()
                .withClient("web")
                .redirectUris("http://github.com/techdev-solutions/")
-               .resourceIds("jaxenter")
+               .resourceIds(RESOURCE_API)
                .scopes("read")
                .authorizedGrantTypes("implicit");
     }

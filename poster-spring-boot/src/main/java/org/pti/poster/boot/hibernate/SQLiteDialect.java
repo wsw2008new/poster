@@ -1,4 +1,4 @@
-package org.pti.poster.hibernate;
+package org.pti.poster.boot.hibernate;
 
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.function.SQLFunctionTemplate;
@@ -44,27 +44,12 @@ public class SQLiteDialect extends Dialect {
 		return true;
 	}
 
-  /*
-  public boolean supportsInsertSelectIdentity() {
-    return true; // As specify in NHibernate dialect
-  }
-  */
 
 	public boolean hasDataTypeInIdentityColumn() {
 		return false; // As specify in NHibernate dialect
 	}
 
-  /*
-  public String appendIdentitySelectToInsert(String insertString) {
-    return new StringBuffer(insertString.length()+30). // As specify in NHibernate dialect
-      append(insertString).
-      append("; ").append(getIdentitySelectString()).
-      toString();
-  }
-  */
-
 	public String getIdentityColumnString() {
-		// return "integer primary key autoincrement";
 		return "integer";
 	}
 
