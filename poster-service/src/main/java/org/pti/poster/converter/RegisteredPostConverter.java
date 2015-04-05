@@ -2,7 +2,7 @@ package org.pti.poster.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pti.poster.config.JacksonFilterConfig;
-import org.pti.poster.model.post.RegisteredPost;
+import org.pti.poster.dto.post.RegisteredPostDto;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -12,7 +12,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import java.io.IOException;
 
-public class RegisteredPostConverter extends AbstractHttpMessageConverter<RegisteredPost> {
+public class RegisteredPostConverter extends AbstractHttpMessageConverter<RegisteredPostDto> {
 	private JacksonFilterConfig filterConfig;
 
 	public RegisteredPostConverter(JacksonFilterConfig filterConfig, MediaType supportedType) {
@@ -22,16 +22,16 @@ public class RegisteredPostConverter extends AbstractHttpMessageConverter<Regist
 
 	@Override
 	protected boolean supports(Class<?> aClass) {
-		return RegisteredPost.class.equals(aClass);
+		return RegisteredPostDto.class.equals(aClass);
 	}
 
 	@Override
-	protected RegisteredPost readInternal(Class<? extends RegisteredPost> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
+	protected RegisteredPostDto readInternal(Class<? extends RegisteredPostDto> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
 		return null;
 	}
 
 	@Override
-	protected void writeInternal(RegisteredPost post, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
+	protected void writeInternal(RegisteredPostDto post, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writer(filterConfig.getFilters()).writeValue(httpOutputMessage.getBody(), post);
 	}

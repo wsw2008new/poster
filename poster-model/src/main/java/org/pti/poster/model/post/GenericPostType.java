@@ -1,12 +1,12 @@
 package org.pti.poster.model.post;
 
 
-public enum PostType {
+public enum GenericPostType {
 	UNREGISTERED_POST, REGISTERED_POST;
 
 	private String typeName;
 
-	private PostType() {
+	private GenericPostType() {
 		this.typeName = name().replaceAll("_", ".").toLowerCase();
 	}
 

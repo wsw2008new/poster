@@ -1,7 +1,9 @@
 package org.pti.poster.service.post;
 
-import org.pti.poster.model.post.AbstractPost;
-import org.pti.poster.model.post.PostCollection;
+import org.pti.poster.assembler.GenericPostAssembler;
+import org.pti.poster.dto.post.GenericPostCollectionDto;
+import org.pti.poster.dto.post.GenericPostDto;
+import org.pti.poster.model.post.GenericPost;
 import org.pti.poster.repository.post.PostRepository;
 import org.pti.poster.repository.post.PostRepositoryFactory;
 import org.pti.poster.repository.post.PostRepositoryType;
@@ -9,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
-@Service("PostService")
+@Service("postService")
 public class PostService {
 
 	@Autowired
@@ -22,15 +25,21 @@ public class PostService {
 		postRepository = postRepositoryFactory.getRepositoryOfType(PostRepositoryType.INMEMORY);
 	}
 
-	public AbstractPost findPostById(String id) {
-		return postRepository.getPostById(id);
+	public GenericPostDto findPostById(String id) {
+		GenericPost queryResult = postRepository.getPostById(id);
+		return GenericPostAssembler.toDto(queryResult);
 	}
 
-	public PostCollection getLastPosts(int number) {
-		return postRepository.getLastPosts(number);
+	public GenericPostCollectionDto getLastPosts(int number) {
+		List<GenericPost> queryResult = postRepository.getLastPosts(number);
+		List<GenericPostDto> queryResultDto = GenericPostAssembler.toDto(queryResult);
+
+		return new GenericPostCollectionDto(queryResultDto);
 	}
 
-	public AbstractPost savePost(AbstractPost post) {
-		return postRepository.savePost(post);
+	public GenericPostDto savePost(GenericPostDto postDto) {
+		GenericPost post = GenericPostAssembler.fromDto(postDto);
+		GenericPost queryResult = postRepository.savePost(post);
+		return GenericPostAssembler.toDto(queryResult);
 	}
 }

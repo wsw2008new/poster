@@ -1,14 +1,15 @@
 package org.pti.poster.repository.post;
 
 
-import org.pti.poster.model.post.AbstractPost;
-import org.pti.poster.model.post.PostCollection;
+import org.pti.poster.model.post.GenericPost;
+
+import java.util.List;
 
 public interface PostRepository {
 
-	public AbstractPost getPostById(String id);
+	public GenericPost getPostById(String id);
 
-	public PostCollection getLastPosts(int number);
+	public List<GenericPost> getLastPosts(int number);
 
-	public AbstractPost savePost(AbstractPost post);
+	public GenericPost savePost(GenericPost post);
 }

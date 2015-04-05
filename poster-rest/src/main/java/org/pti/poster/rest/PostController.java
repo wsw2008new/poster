@@ -1,8 +1,8 @@
 package org.pti.poster.rest;
 
-import org.pti.poster.model.post.AbstractPost;
-import org.pti.poster.model.post.PostCollection;
-import org.pti.poster.model.post.UnregisteredPost;
+import org.pti.poster.dto.post.GenericPostDto;
+import org.pti.poster.dto.post.GenericPostCollectionDto;
+import org.pti.poster.dto.post.UnregisteredPostDto;
 import org.pti.poster.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +17,21 @@ public class PostController {
 	@RequestMapping(value = "/get", params = {"id"}, method = RequestMethod.GET)
 	public
 	@ResponseBody
-	AbstractPost getPost(@RequestParam(value = "id") String id) {
+	GenericPostDto getPost(@RequestParam(value = "id") String id) {
 		return postService.findPostById(id);
 	}
 
 	@RequestMapping(value = "/get", params = {"last"}, method = RequestMethod.GET)
 	public
 	@ResponseBody
-	PostCollection getLastPosts(@RequestParam(value = "last") int number) {
+	GenericPostCollectionDto getLastPosts(@RequestParam(value = "last") int number) {
 		return postService.getLastPosts(number);
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public
 	@ResponseBody
-	AbstractPost save(@RequestBody UnregisteredPost post) {
+	GenericPostDto save(@RequestBody UnregisteredPostDto post) {
 		return postService.savePost(post);
 	}
 }

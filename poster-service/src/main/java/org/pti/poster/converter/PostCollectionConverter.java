@@ -2,8 +2,7 @@ package org.pti.poster.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pti.poster.config.JacksonFilterConfig;
-import org.pti.poster.model.post.PostCollection;
-import org.pti.poster.model.post.RegisteredPost;
+import org.pti.poster.dto.post.GenericPostCollectionDto;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -13,7 +12,7 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 
 import java.io.IOException;
 
-public class PostCollectionConverter extends AbstractHttpMessageConverter<PostCollection> {
+public class PostCollectionConverter extends AbstractHttpMessageConverter<GenericPostCollectionDto> {
 	private JacksonFilterConfig filterConfig;
 
 	public PostCollectionConverter(JacksonFilterConfig filterConfig, MediaType supportedType) {
@@ -23,16 +22,16 @@ public class PostCollectionConverter extends AbstractHttpMessageConverter<PostCo
 
 	@Override
 	protected boolean supports(Class<?> aClass) {
-		return PostCollection.class.equals(aClass);
+		return GenericPostCollectionDto.class.equals(aClass);
 	}
 
 	@Override
-	protected PostCollection readInternal(Class<? extends PostCollection> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
+	protected GenericPostCollectionDto readInternal(Class<? extends GenericPostCollectionDto> aClass, HttpInputMessage httpInputMessage) throws IOException, HttpMessageNotReadableException {
 		return null;
 	}
 
 	@Override
-	protected void writeInternal(PostCollection postCollection, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
+	protected void writeInternal(GenericPostCollectionDto postCollection, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writer(filterConfig.getFilters()).writeValue(httpOutputMessage.getBody(), postCollection);
 	}
