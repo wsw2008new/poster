@@ -1,6 +1,6 @@
 package org.pti.poster.service.post;
 
-import org.pti.poster.model.post.Post;
+import org.pti.poster.model.post.AbstractPost;
 import org.pti.poster.model.post.PostCollection;
 import org.pti.poster.repository.post.PostRepository;
 import org.pti.poster.repository.post.PostRepositoryFactory;
@@ -22,7 +22,7 @@ public class PostService {
 		postRepository = postRepositoryFactory.getRepositoryOfType(PostRepositoryType.INMEMORY);
 	}
 
-	public Post findPostById(String id) {
+	public AbstractPost findPostById(String id) {
 		return postRepository.getPostById(id);
 	}
 
@@ -30,7 +30,7 @@ public class PostService {
 		return postRepository.getLastPosts(number);
 	}
 
-	public Post savePost(Post post) {
+	public AbstractPost savePost(AbstractPost post) {
 		return postRepository.savePost(post);
 	}
 }

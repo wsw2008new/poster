@@ -4,16 +4,16 @@ import java.util.List;
 
 public class PostCollection {
 
-	private List<Post> posts;
+	private List<AbstractPost> posts;
 
 	private PostCollection() {
 	}
 
-	public PostCollection(List<Post> posts) {
+	public PostCollection(List<AbstractPost> posts) {
 		this.posts = posts;
 	}
 
-	public List<Post> getPosts() {
+	public List<AbstractPost> getPosts() {
 		return posts;
 	}
 

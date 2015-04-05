@@ -7,7 +7,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 @JsonFilter("postFilter")
-public abstract class AbstractPost implements Post {
+public abstract class AbstractPost {
 
 	private final static String DATE_FORMAT = "dd.MM.yyyy";
 

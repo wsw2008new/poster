@@ -1,6 +1,6 @@
 package org.pti.poster.repository.post;
 
-import org.pti.poster.model.post.Post;
+import org.pti.poster.model.post.AbstractPost;
 import org.pti.poster.model.post.PostCollection;
 import org.pti.poster.model.post.RegisteredPost;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import java.util.*;
 public class InMemoryPostRepository implements PostRepository {
 
 	public final static PostRepositoryType TYPE = PostRepositoryType.INMEMORY;
-	Map<String, Post> allPosts;
+	Map<String, AbstractPost> allPosts;
 
 	@PostConstruct
 	public void init() {
@@ -20,20 +20,20 @@ public class InMemoryPostRepository implements PostRepository {
 	}
 
 	@Override
-	public Post getPostById(String id) {
+	public AbstractPost getPostById(String id) {
 		return allPosts.get(id);
 	}
 
 	@Override
 	public PostCollection getLastPosts(int number) {
-		List<Post> result = new ArrayList<>();
-		List<Map.Entry<String, Post>> entryList = new ArrayList<>(allPosts.entrySet());
+		List<AbstractPost> result = new ArrayList<>();
+		List<Map.Entry<String, AbstractPost>> entryList = new ArrayList<>(allPosts.entrySet());
 
 		int endIndex = entryList.size();
 		int startIndex = endIndex - number;
 
-		List<Map.Entry<String, Post>> lastEntries = entryList.subList(startIndex, endIndex);
-		for (Map.Entry<String, Post> entry : lastEntries) {
+		List<Map.Entry<String, AbstractPost>> lastEntries = entryList.subList(startIndex, endIndex);
+		for (Map.Entry<String, AbstractPost> entry : lastEntries) {
 			result.add(entry.getValue());
 		}
 
@@ -41,9 +41,9 @@ public class InMemoryPostRepository implements PostRepository {
 	}
 
 	@Override
-	public Post savePost(Post post) {
+	public AbstractPost savePost(AbstractPost post) {
 		String id = UUID.randomUUID().toString();
-		Post savedPost = new RegisteredPost(id, post.getUserId(), post.getText());
+		AbstractPost savedPost = new RegisteredPost(id, post.getUserId(), post.getText());
 		allPosts.put(id, savedPost);
 
 		return savedPost;
