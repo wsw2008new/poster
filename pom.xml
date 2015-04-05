@@ -12,10 +12,12 @@
         <module>poster-repository</module>
         <module>poster-service</module>
         <module>poster-rest</module>
-	<module>poster-gui</module>
+        <module>poster-gui</module>
         <module>poster-integration-tests</module>
         <module>poster-spring-boot</module>
+        <module>poster-auth-server</module>
     </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <couchbase.version>3.0.0-beta2</couchbase.version>

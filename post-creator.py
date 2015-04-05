@@ -15,4 +15,5 @@ for x in range(0,512):
   data = {"text": text_generator(),"userId": id_generator()}
   headers = {'Content-type': 'application/json'}
   r = requests.post(url, data=json.dumps(data), headers=headers)  
-  print(r.status_code, r.reason)
+  print(r.json())
+  print("\n")
