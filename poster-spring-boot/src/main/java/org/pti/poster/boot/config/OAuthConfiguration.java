@@ -19,32 +19,32 @@ import javax.sql.DataSource;
 public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
 
 	private static final String RESOURCE_API = "api";
+	private static final String RESOURCE_SWAGGER = "swagger";
 
-    @Value("${oauth_db}")
-    private String oauthDbJdbc;
+	@Value("${oauth_db}")
+	private String oauthDbJdbc;
 
-    @Bean
-    public TokenStore tokenStore() {
-        DataSource tokenDataSource = DataSourceBuilder.create().driverClassName("org.sqlite.JDBC").url(oauthDbJdbc).build();
-        return new JdbcTokenStore(tokenDataSource);
-    }
+	@Bean
+	public TokenStore tokenStore() {
+		DataSource tokenDataSource = DataSourceBuilder.create().driverClassName("org.sqlite.JDBC").url(oauthDbJdbc).build();
+		return new JdbcTokenStore(tokenDataSource);
+	}
 
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId(RESOURCE_API)
-        .tokenStore(tokenStore());
-    }
+	@Override
+	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+		resources.resourceId(RESOURCE_API).resourceId(RESOURCE_SWAGGER)
+				.tokenStore(tokenStore());
+	}
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-            .antMatchers(HttpMethod.GET, "/**").access("#oauth2.hasScope('read')")
-            .antMatchers(HttpMethod.OPTIONS, "/**").access("#oauth2.hasScope('read')")
-            .antMatchers(HttpMethod.POST, "/**").access("#oauth2.hasScope('write')")
-            .antMatchers(HttpMethod.PUT, "/**").access("#oauth2.hasScope('write')")
-            .antMatchers(HttpMethod.PATCH, "/**").access("#oauth2.hasScope('write')")
-            .antMatchers(HttpMethod.DELETE, "/**").access("#oauth2.hasScope('write')");
-    }
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers(HttpMethod.GET, "/**").access("#oauth2.hasScope('read')")
+				.antMatchers(HttpMethod.OPTIONS, "/**").access("#oauth2.hasScope('read')")
+				.antMatchers(HttpMethod.POST, "/**").access("#oauth2.hasScope('write')")
+				.antMatchers(HttpMethod.PUT, "/**").access("#oauth2.hasScope('write')")
+				.antMatchers(HttpMethod.PATCH, "/**").access("#oauth2.hasScope('write')")
+				.antMatchers(HttpMethod.DELETE, "/**").access("#oauth2.hasScope('write')");
+	}
 
 }

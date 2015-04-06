@@ -18,39 +18,42 @@ import javax.sql.DataSource;
 public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
 	private static final String RESOURCE_API = "api";
-
-    @Autowired
-    private DataSource dataSource;
+	private static final String RESOURCE_SWAGGER = "swagger";
 
 	@Autowired
-	private AuthenticationManager authenticationManager;
+	private DataSource dataSource;
+
+//	@Autowired
+//	private AuthenticationManager authenticationManager;
 
 
-    @Bean
-    public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
-    }
+	@Bean
+	public TokenStore tokenStore() {
+		return new JdbcTokenStore(dataSource);
+	}
 
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore());
-		endpoints.authenticationManager(authenticationManager);
-    }
+	@Override
+	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+		endpoints.tokenStore(tokenStore());
+//		endpoints.authenticationManager(authenticationManager);
+	}
 
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-               .withClient("curl")
-               .authorities("ROLE_ADMIN")
-               .resourceIds(RESOURCE_API)
-               .scopes("read", "write")
-               .authorizedGrantTypes("client_credentials")
-               .secret("password")
-               .and()
-               .withClient("web")
-               .redirectUris("http://github.com/techdev-solutions/")
-               .resourceIds(RESOURCE_API)
-               .scopes("read")
-               .authorizedGrantTypes("implicit");
-    }
+	@Override
+	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		clients.inMemory()
+				.withClient("curl")
+				.authorities("ROLE_ADMIN")
+				.resourceIds(RESOURCE_API)
+				.scopes("read", "write")
+				.authorizedGrantTypes("client_credentials")
+				.secret("password")
+				.and()
+				.withClient("web")
+//				.authorities("ROLE_ADMIN")
+//				.redirectUris("http://localhost:8080/swagger/index.html")
+				.resourceIds(RESOURCE_API, RESOURCE_SWAGGER)
+				.scopes("read", "write")
+				.authorizedGrantTypes("client_credentials");
+//				.secret("password");
+	}
 }
