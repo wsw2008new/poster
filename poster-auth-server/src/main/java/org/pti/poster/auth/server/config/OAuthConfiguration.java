@@ -1,5 +1,6 @@
 package org.pti.poster.auth.server.config;
 
+import org.pti.poster.security.PosterURL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +18,12 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer
 public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
-	private static final String RESOURCE_API = "api";
-	private static final String RESOURCE_SWAGGER = "swagger";
 
 	@Autowired
 	private DataSource dataSource;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-
 
 	@Bean
 	public TokenStore tokenStore() {
@@ -43,7 +41,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 		clients.inMemory()
 				.withClient("curl")
 				.authorities("ROLE_ADMIN")
-				.resourceIds(RESOURCE_API)
+				.resourceIds(PosterURL.API_ALL)
 				.scopes("read", "write")
 				.authorizedGrantTypes("client_credentials")
 				.secret("password")
@@ -51,7 +49,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 				.withClient("web")
 				.authorities("ROLE_ADMIN")
 				.redirectUris("http://localhost:8080/api/swagger/index.html")
-				.resourceIds(RESOURCE_API, RESOURCE_SWAGGER)
+				.resourceIds(PosterURL.API_ALL)
 				.scopes("read", "write")
 				.authorizedGrantTypes("implicit")
 				.secret("password");

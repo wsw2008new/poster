@@ -1,8 +1,7 @@
 package org.pti.poster.boot.config;
 
 import org.pti.poster.security.PosterURL;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,14 +18,12 @@ import javax.sql.DataSource;
 @EnableResourceServer
 public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
 
-
-	@Value("${oauth_db}")
-	private String oauthDbJdbc;
+	@Autowired
+	private DataSource dataSource;
 
 	@Bean
 	public TokenStore tokenStore() {
-		DataSource tokenDataSource = DataSourceBuilder.create().driverClassName("org.sqlite.JDBC").url(oauthDbJdbc).build();
-		return new JdbcTokenStore(tokenDataSource);
+		return new JdbcTokenStore(dataSource);
 	}
 
 	@Override
