@@ -23,8 +23,8 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 
-//	@Autowired
-//	private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 
 	@Bean
@@ -35,7 +35,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(tokenStore());
-//		endpoints.authenticationManager(authenticationManager);
+		endpoints.authenticationManager(authenticationManager);
 	}
 
 	@Override
@@ -49,11 +49,11 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 				.secret("password")
 				.and()
 				.withClient("web")
-//				.authorities("ROLE_ADMIN")
-//				.redirectUris("http://localhost:8080/swagger/index.html")
+				.authorities("ROLE_ADMIN")
+				.redirectUris("http://localhost:8080/api/swagger/index.html")
 				.resourceIds(RESOURCE_API, RESOURCE_SWAGGER)
 				.scopes("read", "write")
-				.authorizedGrantTypes("client_credentials");
-//				.secret("password");
+				.authorizedGrantTypes("implicit")
+				.secret("password");
 	}
 }

@@ -1,4 +1,4 @@
-package org.pti.poster.boot.hibernate;
+package org.pti.poster.security.hibernate;
 
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.function.SQLFunctionTemplate;

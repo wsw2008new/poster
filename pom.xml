@@ -14,6 +14,7 @@
         <module>poster-rest</module>
         <module>poster-gui</module>
         <module>poster-integration-tests</module>
+        <module>poster-security</module>
         <module>poster-spring-boot</module>
         <module>poster-auth-server</module>
     </modules>
