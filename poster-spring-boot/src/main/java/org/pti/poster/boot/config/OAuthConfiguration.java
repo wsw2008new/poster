@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @EnableResourceServer
 public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
 
-	private static final String RESOURCE_API = "api";
+	private static final String RESOURCE_API = "api/**";
 
 	@Value("${oauth_db}")
 	private String oauthDbJdbc;
