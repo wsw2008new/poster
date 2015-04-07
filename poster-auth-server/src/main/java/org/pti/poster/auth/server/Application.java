@@ -1,6 +1,6 @@
 package org.pti.poster.auth.server;
 
-import org.apache.commons.io.IOUtils;
+import org.pti.poster.security.hibernate.ScriptRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,40 +9,32 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.io.StringWriter;
+import java.io.InputStreamReader;
 
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
 public class Application {
 
-    @Autowired
-    private DataSource dataSource;
+	@Autowired
+	private DataSource dataSource;
 
-    @PostConstruct
-    public void setUpTokenDatasource() {
-	Resource resource = new ClassPathResource("db_schema");
-	String query = "";
+	@PostConstruct
+	public void setUpTokenDatasource() {
+		Resource resource = new ClassPathResource("db_schema");
 
-	try {
-	    StringWriter writer = new StringWriter();
-	    IOUtils.copy(resource.getInputStream(), writer, "UTF-8");
-	    query = writer.toString();
-	} catch (IOException e) {
-	    e.printStackTrace();
+		try {
+			ScriptRunner scriptRunner = new ScriptRunner(dataSource.getConnection(), true, true);
+			scriptRunner.runScript(new InputStreamReader(resource.getInputStream()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-	System.out.println(query);
-	jdbcTemplate.execute(query);
-    }
-
-    public static void main(String[] args) {
-	ApplicationContext ctx = SpringApplication.run(Application.class, args);
-    }
+	public static void main(String[] args) {
+		ApplicationContext ctx = SpringApplication.run(Application.class, args);
+	}
 }
