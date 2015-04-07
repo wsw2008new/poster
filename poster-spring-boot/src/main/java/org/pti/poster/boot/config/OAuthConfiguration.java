@@ -18,7 +18,8 @@ import javax.sql.DataSource;
 @EnableResourceServer
 public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
 
-	private static final String RESOURCE_API = "api/**";
+	private static final String RESOURCE_API = "/api";
+	private static final String RESOURCE_API_ALL = "/api/**";
 
 	@Value("${oauth_db}")
 	private String oauthDbJdbc;
@@ -38,12 +39,12 @@ public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers(HttpMethod.GET, RESOURCE_API).access("#oauth2.hasScope('read')")
-				.antMatchers(HttpMethod.OPTIONS, RESOURCE_API).access("#oauth2.hasScope('read')")
-				.antMatchers(HttpMethod.POST, RESOURCE_API).access("#oauth2.hasScope('write')")
-				.antMatchers(HttpMethod.PUT, RESOURCE_API).access("#oauth2.hasScope('write')")
-				.antMatchers(HttpMethod.PATCH, RESOURCE_API).access("#oauth2.hasScope('write')")
-				.antMatchers(HttpMethod.DELETE, RESOURCE_API).access("#oauth2.hasScope('write')");
+				.antMatchers(HttpMethod.GET, RESOURCE_API_ALL).access("#oauth2.hasScope('read')")
+				.antMatchers(HttpMethod.OPTIONS, RESOURCE_API_ALL).access("#oauth2.hasScope('read')")
+				.antMatchers(HttpMethod.POST, RESOURCE_API_ALL).access("#oauth2.hasScope('write')")
+				.antMatchers(HttpMethod.PUT, RESOURCE_API_ALL).access("#oauth2.hasScope('write')")
+				.antMatchers(HttpMethod.PATCH, RESOURCE_API_ALL).access("#oauth2.hasScope('write')")
+				.antMatchers(HttpMethod.DELETE, RESOURCE_API_ALL).access("#oauth2.hasScope('write')");
 	}
 
 }
