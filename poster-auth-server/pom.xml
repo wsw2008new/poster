@@ -20,6 +20,7 @@
         <spring-security-oauth2.version>2.0.7.RELEASE</spring-security-oauth2.version>
         <hsqldb.version>1.8.0.10</hsqldb.version>
         <sqlite-jdbs.version>3.8.7</sqlite-jdbs.version>
+        <commons-io.version>2.4</commons-io.version>
     </properties>
 
     <dependencies>
@@ -79,6 +80,13 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>${sqlite-jdbs.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
 
     </dependencies>
 

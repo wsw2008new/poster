@@ -38,7 +38,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory()
+		clients.jdbc(dataSource)
 				.withClient("curl")
 				.authorities("ROLE_ADMIN")
 				.resourceIds(PosterURL.API_ALL)
