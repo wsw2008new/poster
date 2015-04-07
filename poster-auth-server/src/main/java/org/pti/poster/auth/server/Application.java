@@ -39,6 +39,7 @@ public class Application {
 		}
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		System.out.println(query);
 		jdbcTemplate.execute(query);
 	}
 
