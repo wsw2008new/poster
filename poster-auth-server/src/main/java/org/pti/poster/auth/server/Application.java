@@ -16,34 +16,33 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.StringWriter;
 
-
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
 public class Application {
 
-	@Autowired
-	private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-	@PostConstruct
-	public void setUpTokenDatasource() {
-		Resource resource = new ClassPathResource("db_schema.sql");
-		String query= "";
+    @PostConstruct
+    public void setUpTokenDatasource() {
+	Resource resource = new ClassPathResource("db_schema");
+	String query = "";
 
-		try {
-			StringWriter writer = new StringWriter();
-			IOUtils.copy(resource.getInputStream(), writer, "UTF-8");
-			query = writer.toString();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		System.out.println(query);
-		jdbcTemplate.execute(query);
+	try {
+	    StringWriter writer = new StringWriter();
+	    IOUtils.copy(resource.getInputStream(), writer, "UTF-8");
+	    query = writer.toString();
+	} catch (IOException e) {
+	    e.printStackTrace();
 	}
 
-	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(Application.class, args);
-	}
+	JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+	System.out.println(query);
+	jdbcTemplate.execute(query);
+    }
+
+    public static void main(String[] args) {
+	ApplicationContext ctx = SpringApplication.run(Application.class, args);
+    }
 }
