@@ -33,7 +33,7 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(tokenStore());
-//		endpoints.authenticationManager(authenticationManager);
+		endpoints.authenticationManager(authenticationManager);
 	}
 
 	@Override
