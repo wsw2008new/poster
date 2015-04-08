@@ -39,19 +39,11 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.jdbc(dataSource)
-				.withClient("curl")
-				.authorities("ROLE_ADMIN")
-				.resourceIds(PosterURL.API_ALL)
-				.scopes("read", "write")
-				.authorizedGrantTypes("client_credentials")
-				.secret("password")
-				.and()
 				.withClient("web")
-				.authorities("ROLE_ADMIN")
-				.redirectUris("http://localhost:8080/api/swagger/index.html")
-				.resourceIds(PosterURL.API_ALL)
-				.scopes("read", "write")
-				.authorizedGrantTypes("implicit")
-				.secret("password");
+				.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+				.authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
+				.scopes("read", "write", "trust")
+				.resourceIds("sparklr")
+				.accessTokenValiditySeconds(60);
 	}
 }
