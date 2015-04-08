@@ -22,19 +22,17 @@ import java.sql.SQLException;
 @EnableResourceServer
 public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
 
-	@Value("${oauth_db}")
-	private String oauthDbJdbc;
+	@Autowired
+	private DataSource dataSource;
 
 	@Bean
 	public TokenStore tokenStore() {
-		DataSource tokenDataSource = DataSourceBuilder.create().driverClassName("org.sqlite.JDBC").url(oauthDbJdbc).build();
-		return new JdbcTokenStore(tokenDataSource);
+		return new JdbcTokenStore(dataSource);
 	}
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		resources.resourceId(PosterURL.API_ALL)
-				.tokenStore(tokenStore());
+		resources.tokenStore(tokenStore());
 	}
 
 	@Override
