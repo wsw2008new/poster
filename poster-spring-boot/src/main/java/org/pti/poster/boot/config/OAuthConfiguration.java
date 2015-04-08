@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.sql.DataSource;
@@ -32,18 +33,16 @@ public class OAuthConfiguration extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		resources.tokenStore(tokenStore());
+		resources.resourceId(PosterURL.RESOUCE_ID);
+		resources.tokenStore(new InMemoryTokenStore());
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers(HttpMethod.GET, PosterURL.API_ALL).access("#oauth2.hasScope('read')")
-				.antMatchers(HttpMethod.OPTIONS, PosterURL.API_ALL).access("#oauth2.hasScope('read')")
-				.antMatchers(HttpMethod.POST, PosterURL.API_ALL).access("#oauth2.hasScope('write')")
-				.antMatchers(HttpMethod.PUT, PosterURL.API_ALL).access("#oauth2.hasScope('write')")
-				.antMatchers(HttpMethod.PATCH, PosterURL.API_ALL).access("#oauth2.hasScope('write')")
-				.antMatchers(HttpMethod.DELETE, PosterURL.API_ALL).access("#oauth2.hasScope('write')");
+		http
+				.requestMatchers().antMatchers(PosterURL.API_ALL).and()
+				.authorizeRequests()
+				.anyRequest().access("#oauth2.hasScope('read')");
 	}
 
 }

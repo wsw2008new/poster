@@ -3,3 +3,5 @@ http://localhost:21056/oauth/authorize?client_id=web&response_type=token&passwor
 SELECT name FROM sqlite_master WHERE type='table';
 
 localhost:21056/oauth/token?client_id=web&response_type=token&password=password&access_token=f25da75a-5b2f-42be-a263-6dd6a8dc08b2
+
+http://localhost:21056/oauth/authorize?client_id=web&client_secret=password&response_type=token&redirect_uri=http://localhost:8080/api/swagger/index.html

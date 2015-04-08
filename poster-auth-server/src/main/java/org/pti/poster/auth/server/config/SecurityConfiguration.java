@@ -19,9 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-				.dataSource(dataSource)
-				.withUser("John").roles("ADMIN").password("password")
+		auth.inMemoryAuthentication()
+				.withUser("John").roles("CLIENT", "TRUSTED_CLIENT").password("password")
 				.and()
 				.withUser("Mary").roles("BASIC").password("password");
 	}
