@@ -19,8 +19,8 @@ public class AuthenticationManagerConfiguration extends GlobalAuthenticationConf
 	@Override
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
-				.withUser("dave")
-				.password("secret")
+				.withUser("user")
+				.password("password")
 				.roles("USER");
 	}
 
