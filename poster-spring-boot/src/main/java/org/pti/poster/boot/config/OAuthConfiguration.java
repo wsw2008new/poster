@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.client.token.ClientTokenServices;
 import org.springframework.security.oauth2.client.token.JdbcClientTokenServices;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeAccessTokenProvider;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.implicit.ImplicitAccessTokenProvider;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,10 +41,6 @@ public class OAuthConfiguration {
 	@Value("${oauth.token:http://localhost:21056/oauth/token}")
 	private String tokenUrl;
 
-	@javax.annotation.Resource
-	@Qualifier("accessTokenRequest")
-	private AccessTokenRequest accessTokenRequest;
-
 	@Autowired
 	private DataSource dataSource;
 
@@ -57,7 +54,7 @@ public class OAuthConfiguration {
 	@Bean
 	@Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
 	public OAuth2RestOperations restTemplate() {
-		OAuth2RestTemplate template = new OAuth2RestTemplate(resource(), new DefaultOAuth2ClientContext(accessTokenRequest));
+		OAuth2RestTemplate template = new OAuth2RestTemplate(resource(), new DefaultOAuth2ClientContext());
 		AccessTokenProviderChain provider = new AccessTokenProviderChain(Arrays.asList(new AuthorizationCodeAccessTokenProvider()));
 		provider.setClientTokenServices(clientTokenServices());
 		return template;
@@ -74,6 +71,8 @@ public class OAuthConfiguration {
 		resource.setAccessTokenUri(tokenUrl);
 		resource.setUserAuthorizationUri(authorizeUrl);
 		resource.setClientId("my-trusted-client");
+		resource.setId("poster-rest");
+		resource.setPreEstablishedRedirectUri("http://localhost:8080/swagger/index.html");
 		return resource;
 	}
 

@@ -46,11 +46,10 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-			throws Exception {
+	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.authorizationCodeServices(authorizationCodeServices())
-				.authenticationManager(auth).tokenStore(tokenStore())
-				.approvalStoreDisabled();
+				 .authenticationManager(auth).tokenStore(tokenStore())
+				 .approvalStoreDisabled();
 	}
 
 	@Override
@@ -62,7 +61,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 				.authorizedGrantTypes("client_credentials", "password", "authorization_code", "refresh_token", "implicit")
 				.authorities("ROLE_USER", "ROLE_TRUSTED_CLIENT")
 				.scopes("read", "write", "trust")
-				.resourceIds("oauth2-resource")
+				.resourceIds("poster-rest")
 				.accessTokenValiditySeconds(60).and();
 
 //				.withClient("my-client-with-registered-redirect")
