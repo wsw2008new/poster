@@ -9,5 +9,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @EnableSwagger
+@ComponentScan
 public class SpringApplicationConfiguration {
 }

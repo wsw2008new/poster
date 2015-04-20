@@ -7,3 +7,5 @@ localhost:21056/oauth/token?client_id=web&response_type=token&password=password&
 http://localhost:21056/oauth/authorize?client_id=web&client_secret=password&response_type=token&redirect_uri=http://localhost:8080/api/swagger/index.html
 
 http://localhost:21056/oauth/token?grant_type=refresh_token&refresh_token=92a3f344f2b618863484d006bcc45a59
+
+http://localhost:8080/api/post/get?last=1
