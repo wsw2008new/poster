@@ -27,7 +27,7 @@ public class Application {
 		Resource resource = new ClassPathResource("db_schema");
 
 		try {
-			ScriptRunner scriptRunner = new ScriptRunner(dataSource.getConnection(), true, true);
+			ScriptRunner scriptRunner = new ScriptRunner(dataSource.getConnection(), false, true);
 			scriptRunner.runScript(new InputStreamReader(resource.getInputStream()));
 		} catch (Exception e) {
 			e.printStackTrace();
