@@ -9,3 +9,6 @@ http://localhost:21056/oauth/authorize?client_id=web&client_secret=password&resp
 http://localhost:21056/oauth/token?grant_type=refresh_token&refresh_token=92a3f344f2b618863484d006bcc45a59
 
 http://localhost:8080/api/post/get?last=1
+
+
+localhost:21056/oauth/authorize?client_id=poster&redirect_uri=http://192.168.32.174:8080/api/swagger/index.html&response_type=token
