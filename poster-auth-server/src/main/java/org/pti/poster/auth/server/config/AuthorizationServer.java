@@ -56,11 +56,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 		clients.jdbc(dataSource)
 				.passwordEncoder(passwordEncoder)
 
-				.withClient("my-trusted-client")
+				.withClient("poster")
 				.authorizedGrantTypes("client_credentials", "password", "authorization_code", "refresh_token", "implicit")
 				.authorities("ROLE_USER", "ROLE_TRUSTED_CLIENT")
 				.scopes("read", "write", "trust")
-				.resourceIds("poster-rest")
+				.resourceIds("auth-rest")
 				.accessTokenValiditySeconds(60).and();
 
 //				.withClient("my-client-with-registered-redirect")

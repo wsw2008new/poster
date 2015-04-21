@@ -67,8 +67,8 @@ public class Application {
 		AuthorizationCodeResourceDetails resource = new AuthorizationCodeResourceDetails();
 		resource.setAccessTokenUri(tokenUrl);
 		resource.setUserAuthorizationUri(authorizeUrl);
-		resource.setClientId("my-trusted-client");
-		resource.setId("poster-rest");
+		resource.setClientId("poster");
+		resource.setId("auth-rest");
 		resource.setUseCurrentUri(true);
 		return resource;
 	}
