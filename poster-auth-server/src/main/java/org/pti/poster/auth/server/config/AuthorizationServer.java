@@ -40,8 +40,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 	}
 
 	@Override
-	public void configure(AuthorizationServerSecurityConfigurer security)
-			throws Exception {
+	public void configure(AuthorizationServerSecurityConfigurer security)throws Exception {
 		security.passwordEncoder(passwordEncoder);
 	}
 

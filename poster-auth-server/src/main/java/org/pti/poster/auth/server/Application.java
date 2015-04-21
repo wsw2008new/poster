@@ -9,6 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -17,6 +20,8 @@ import java.io.InputStreamReader;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
+@RestController
+@RequestMapping("/api/system")
 public class Application {
 
 	@Autowired
@@ -36,5 +41,11 @@ public class Application {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
+	}
+
+
+	@RequestMapping(value = "/health", method = RequestMethod.GET)
+	public String getHealth() {
+		return "Authorization server is up!";
 	}
 }
