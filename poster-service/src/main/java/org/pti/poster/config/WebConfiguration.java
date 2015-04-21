@@ -32,7 +32,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/swagger/**")
+		registry.addResourceHandler("/api/swagger/**")
 				.addResourceLocations("classpath:/static/swagger/");
 	}
 
