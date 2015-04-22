@@ -15,7 +15,6 @@
         <module>poster-rest</module>
         <module>poster-gui</module>
         <module>poster-integration-tests</module>
-        <module>poster-security</module>
         <module>poster-server</module>
     </modules>
 

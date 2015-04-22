@@ -40,11 +40,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.pti</groupId>
-            <artifactId>poster-security</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <scope>runtime</scope>

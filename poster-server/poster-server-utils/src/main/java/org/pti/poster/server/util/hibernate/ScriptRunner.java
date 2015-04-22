@@ -1,4 +1,4 @@
-package org.pti.poster.security.hibernate;
+package org.pti.poster.server.util.hibernate;
 
 /*
  * Slightly modified version of the com.ibatis.common.jdbc.ScriptRunner class

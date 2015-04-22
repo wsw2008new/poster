@@ -1,4 +1,4 @@
-package org.pti.poster.security;
+package org.pti.poster.server.util;
 
 
 public class PosterURL {

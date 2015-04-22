@@ -1,6 +1,6 @@
 package org.pti.poster.server.authserver;
 
-import org.pti.poster.security.hibernate.ScriptRunner;
+import org.pti.poster.server.util.hibernate.ScriptRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
