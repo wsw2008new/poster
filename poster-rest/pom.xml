@@ -40,6 +40,12 @@
 
 		<dependency>
 			<groupId>org.pti</groupId>
+			<artifactId>poster-dto</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.pti</groupId>
 			<artifactId>poster-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
