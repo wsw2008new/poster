@@ -59,7 +59,7 @@ public class AuthorizationServerOAuthRestTemplate {
 		resource.setAccessTokenUri(tokenUrl);
 		resource.setUserAuthorizationUri(authorizeUrl);
 		resource.setClientId("my-trusted-client");
-		resource.setId("poster-rest");
+		resource.setId("auth-rest");
 		resource.setPreEstablishedRedirectUri(baseUrl);
 		return resource;
 	}

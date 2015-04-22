@@ -20,8 +20,6 @@ import java.io.InputStreamReader;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@RestController
-@RequestMapping("/api/system")
 public class Application {
 
 	@Autowired
@@ -41,11 +39,5 @@ public class Application {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
-	}
-
-
-	@RequestMapping(value = "/health", method = RequestMethod.GET)
-	public String getHealth() {
-		return "Authorization server is up!";
 	}
 }

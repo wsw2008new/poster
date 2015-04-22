@@ -61,7 +61,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 				.authorities("ROLE_USER", "ROLE_TRUSTED_CLIENT")
 				.scopes("read", "write", "trust")
 				.resourceIds("auth-rest")
-				.accessTokenValiditySeconds(60).and();
+				.accessTokenValiditySeconds(3600).and();
 
 //				.withClient("my-client-with-registered-redirect")
 //				.authorizedGrantTypes("authorization_code")

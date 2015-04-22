@@ -31,6 +31,7 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStoreJDBC);
+		resources.resourceId("auth-rest");
 	}
 
 	@Override

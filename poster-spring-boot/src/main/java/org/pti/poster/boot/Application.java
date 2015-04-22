@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.client.token.ClientTokenServices;
 import org.springframework.security.oauth2.client.token.JdbcClientTokenServices;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeAccessTokenProvider;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.implicit.ImplicitResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
 import javax.sql.DataSource;
@@ -64,7 +65,7 @@ public class Application {
 
 	@Bean
 	protected OAuth2ProtectedResourceDetails resource() {
-		AuthorizationCodeResourceDetails resource = new AuthorizationCodeResourceDetails();
+		ImplicitResourceDetails resource = new ImplicitResourceDetails();
 		resource.setAccessTokenUri(tokenUrl);
 		resource.setUserAuthorizationUri(authorizeUrl);
 		resource.setClientId("poster");
