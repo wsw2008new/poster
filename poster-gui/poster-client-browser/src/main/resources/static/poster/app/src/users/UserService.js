@@ -1,8 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('users',['ngResource'])
-        .service('userService', ['$q', UserService]);
+    angular.module('users')
+        .service('userService', ['$q', '$resource', UserService])
+        .config(function ($resourceProvider) {
+            $resourceProvider.defaults.stripTrailingSlashes = false;
+        });
 
     /**
      * Users DataService
@@ -12,7 +15,7 @@
      * @returns {{loadAll: Function}}
      * @constructor
      */
-    function UserService($q) {
+    function UserService($q, $resource) {
         var users = [{
             "userId": "2e8ba4c0-d149-4ab7-be64-983545c4432c",
             "userNickName": "qdqd",
@@ -27,10 +30,10 @@
 
         // Promise-based API
         return {
-            loadAllUsers: function () {
+            loadAll: function () {
                 // Simulate async nature of real remote calls
-                var AllUsers = $resource('/api/user/registered/all/');
-                var allUsers = AllUsers.query(function () {});
+                var AllUsers = $resource('/api/user/registered/all/', {});
+                var allUsers = AllUsers.query();
                 return $q.when(allUsers);
             }
         };

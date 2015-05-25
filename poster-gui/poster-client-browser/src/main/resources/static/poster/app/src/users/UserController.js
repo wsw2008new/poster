@@ -26,10 +26,11 @@
     // Load all registered users
 
     userService
-          .loadAllUsers()
+          .loadAll()
           .then( function( users ) {
-            self.users    = [].concat(users);
+            self.users    = users;
             self.selected = users[0];
+            console.log(users);
           });
 
     // *********************************
