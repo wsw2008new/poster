@@ -23,6 +23,9 @@ public class PosterWebResourceConfiguration extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/api/swagger/**")
 				.addResourceLocations("classpath:/static/swagger/");
+
+		registry.addResourceHandler("/poster/**")
+				.addResourceLocations("classpath:/static/poster/");
 	}
 
 	@Override

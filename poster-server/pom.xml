@@ -66,6 +66,12 @@
 
             <dependency>
                 <groupId>org.pti</groupId>
+                <artifactId>poster-client-browser</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.pti</groupId>
                 <artifactId>poster-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
