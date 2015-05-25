@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('users')
+    angular.module('users',['ngResource'])
         .service('userService', ['$q', UserService]);
 
     /**
@@ -29,7 +29,9 @@
         return {
             loadAllUsers: function () {
                 // Simulate async nature of real remote calls
-                return $q.when(users);
+                var AllUsers = $resource('/api/user/registered/all/');
+                var allUsers = AllUsers.query(function () {});
+                return $q.when(allUsers);
             }
         };
     }
