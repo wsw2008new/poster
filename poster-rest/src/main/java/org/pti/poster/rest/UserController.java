@@ -6,9 +6,11 @@ import org.pti.poster.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/auth")
+import java.util.List;
+
+@RequestMapping("/api/user")
 @RestController
-public class AuthorizationController {
+public class UserController {
 
 	@Autowired
 	UserService userService;
@@ -23,6 +25,13 @@ public class AuthorizationController {
 	@ResponseBody
 	GenericUserDto register(@RequestBody NewUserDto user) {
 		return userService.createUser(user);
+	}
+
+	@RequestMapping(value = "/registered/all/", method = RequestMethod.GET)
+	public
+	@ResponseBody
+	List<GenericUserDto> getAllRegistered() {
+		return userService.getAllUsers();
 	}
 
 }

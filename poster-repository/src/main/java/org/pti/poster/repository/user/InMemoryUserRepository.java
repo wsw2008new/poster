@@ -4,9 +4,7 @@ import org.pti.poster.model.user.GenericUser;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Repository("inMemoryUserRepository")
 public class InMemoryUserRepository implements UserRepository {
@@ -36,5 +34,10 @@ public class InMemoryUserRepository implements UserRepository {
 
 		allUsers.put(id, savedUser);
 		return savedUser;
+	}
+
+	@Override
+	public List<GenericUser> getAllUsers() {
+		return new ArrayList<>(allUsers.values());
 	}
 }

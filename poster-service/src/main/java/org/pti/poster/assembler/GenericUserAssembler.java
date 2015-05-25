@@ -7,6 +7,8 @@ import org.pti.poster.model.user.AbstractUser;
 import org.pti.poster.model.user.GenericUser;
 
 import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class GenericUserAssembler extends AbstractAssembler {
@@ -19,6 +21,16 @@ public class GenericUserAssembler extends AbstractAssembler {
 		GenericUserDto result = null;
 
 		result = convertToDto(user);
+
+		return result;
+	}
+
+	public static List<GenericUserDto> toDto(List<GenericUser> users) throws Exception {
+		List<GenericUserDto> result = new ArrayList<>();
+
+		for (GenericUser user : users) {
+			result.add(toDto(user));
+		}
 
 		return result;
 	}
