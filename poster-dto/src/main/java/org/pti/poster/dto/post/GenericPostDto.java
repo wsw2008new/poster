@@ -2,6 +2,7 @@ package org.pti.poster.dto.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import org.bson.types.ObjectId;
 import org.pti.poster.dto.AbstractDtoEntity;
 import org.pti.poster.model.post.AbstractPost;
 import org.pti.poster.model.post.GenericPostType;
@@ -24,4 +25,9 @@ public abstract class GenericPostDto extends AbstractPost implements AbstractDto
 		return type;
 	}
 
+	@JsonIgnore
+	@Override
+	public ObjectId getUserObjectId() {
+		return userObjectId;
+	}
 }

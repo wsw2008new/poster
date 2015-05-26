@@ -20,12 +20,6 @@ public abstract class AbstractUser {
 	public AbstractUser() {
 	}
 
-	public AbstractUser(GenericUserType type, String userNickName, String userName) {
-		this.type = type;
-		this.userNickName = userNickName;
-		this.userName = userName;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

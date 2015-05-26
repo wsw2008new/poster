@@ -2,10 +2,9 @@ package org.pti.poster.model.post;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 
@@ -22,16 +21,12 @@ public abstract class AbstractPost implements Serializable {
 
 	protected String text;
 
+	@Transient
 	protected String userId;
 
-	public AbstractPost() {
-	}
+	protected ObjectId userObjectId;
 
-	public AbstractPost(GenericPostType type, String id, String userId, String text) {
-		this.type = type;
-		this.id = id;
-		this.userId = userId;
-		this.text = text;
+	public AbstractPost() {
 	}
 
 	@Override

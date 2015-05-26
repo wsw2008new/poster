@@ -1,5 +1,6 @@
 package org.pti.poster.assembler;
 
+import org.bson.types.ObjectId;
 import org.pti.poster.dto.post.GenericPostDto;
 import org.pti.poster.dto.post.NewPostDto;
 import org.pti.poster.dto.post.RegisteredPostDto;
@@ -42,10 +43,21 @@ public class GenericPostAssembler extends AbstractAssembler {
 
 	public static void copyFieldsFromTo(AbstractPost from, AbstractPost to) {
 		to.setType(from.getType());
-		to.setUserId(from.getUserId());
 		to.setId(from.getId());
 		to.setText(from.getText());
 		to.setDate(from.getDate());
+
+		manageAbstarctPostUserId(from, to);
+	}
+
+	private static void manageAbstarctPostUserId(AbstractPost from, AbstractPost to) {
+		if (from.getUserObjectId() != null) {
+			to.setUserId(from.getUserObjectId().toHexString());
+			to.setUserObjectId(from.getUserObjectId());
+		} else {
+			to.setUserObjectId(new ObjectId(from.getUserId()));
+			to.setUserId(from.getUserId());
+		}
 	}
 
 	private static GenericPostDto convertToDto(AbstractPost post) throws Exception {
