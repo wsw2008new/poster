@@ -25,6 +25,13 @@ public class PostController {
 		return postService.findPostById(id);
 	}
 
+	@RequestMapping(value = "/get/user/{id}", method = RequestMethod.GET)
+	public
+	@ResponseBody
+	GenericPostCollectionDto getPostsByUserId(@PathVariable(value = "id") String id) {
+		return postService.findPostsByUserId(id);
+	}
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public
 	@ResponseBody
