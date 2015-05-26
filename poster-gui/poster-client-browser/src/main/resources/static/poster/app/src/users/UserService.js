@@ -26,7 +26,15 @@
 
             loadAllPostsForUser: function (id) {
                 // Simulate async nature of real remote calls
-                var AllPosts = $resource('/api/post/get/user/'+id, {}, {'query': {method: 'GET', isArray: false}});
+                var AllPosts = $resource('/api/post/get/user/' + id, {}, {
+                    'query': {
+                        method: 'GET',
+                        transformResponse: function (data) {
+                            return angular.fromJson(data).posts
+                        },
+                        isArray: true
+                    }
+                });
                 var allPosts = AllPosts.query();
                 return $q.when(allPosts);
             }

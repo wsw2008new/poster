@@ -61,7 +61,7 @@
                 .loadAllPostsForUser(user.userId)
                 .then(function (posts) {
                     self.currentPosts = posts;
-                    console.log(posts);
+                    console.log(self.currentPosts);
                 });
         }
 
