@@ -74,6 +74,14 @@
                     </md-grid-tile-footer>
                 </md-grid-tile>
             </md-grid-list>
+            <md-list>
+                <md-list-item ng-repeat="it in ul.users">
+                    <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                        <md-icon md-svg-icon="svg-1" class="avatar"></md-icon>
+                        {{it.userName}}
+                    </md-button>
+                </md-list-item>
+            </md-list>
 
           <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
             <md-icon md-svg-icon="share"></md-icon>
