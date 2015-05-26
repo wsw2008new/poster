@@ -19,14 +19,14 @@
         return {
             loadAll: function () {
                 // Simulate async nature of real remote calls
-                var AllUsers = $resource('/api/user/registered/all/', {});
+                var AllUsers = $resource('/poster/api/user/registered/all/', {});
                 var allUsers = AllUsers.query();
                 return $q.when(allUsers);
             },
 
             loadAllPostsForUser: function (id) {
                 // Simulate async nature of real remote calls
-                var AllPosts = $resource('/api/post/get/user/' + id, {}, {
+                var AllPosts = $resource('/poster/api/post/get/user/' + id, {}, {
                     'query': {
                         method: 'GET',
                         transformResponse: function (data) {

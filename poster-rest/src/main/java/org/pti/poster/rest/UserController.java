@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/user")
+@RequestMapping("/poster/api/user")
 @RestController
 public class UserController {
 

@@ -31,11 +31,11 @@ public class PosterWebResourceConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/api/swagger/**")
+		registry.addResourceHandler("/poster/api/swagger/**")
 				.addResourceLocations("classpath:/static/swagger/");
 
-		registry.addResourceHandler("/poster/**")
-				.addResourceLocations("classpath:/static/poster/");
+		registry.addResourceHandler("/poster/app/**")
+				.addResourceLocations("classpath:/static/poster/app/");
 	}
 
 	@Override

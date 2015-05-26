@@ -8,7 +8,7 @@ import org.pti.poster.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/post")
+@RequestMapping("/poster/api/post")
 @RestController
 public class PostController {
 
