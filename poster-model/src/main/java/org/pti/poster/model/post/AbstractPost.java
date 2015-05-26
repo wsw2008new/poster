@@ -2,6 +2,10 @@ package org.pti.poster.model.post;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 
@@ -9,10 +13,9 @@ import java.io.Serializable;
 @Setter
 public abstract class AbstractPost implements Serializable {
 
-	public final static String DATE_FORMAT = "dd.MM.yyyy";
-
 	protected GenericPostType type;
 
+	@Id
 	protected String id;
 
 	protected String date;
@@ -24,10 +27,9 @@ public abstract class AbstractPost implements Serializable {
 	public AbstractPost() {
 	}
 
-	public AbstractPost(GenericPostType type, String id, String date, String userId, String text) {
+	public AbstractPost(GenericPostType type, String id, String userId, String text) {
 		this.type = type;
 		this.id = id;
-		this.date = date;
 		this.userId = userId;
 		this.text = text;
 	}

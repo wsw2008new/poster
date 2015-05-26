@@ -1,9 +1,5 @@
 package org.pti.poster.repository.post;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.pti.poster.model.post.AbstractPost;
 import org.pti.poster.model.post.GenericPost;
 import org.springframework.stereotype.Repository;
 
@@ -45,21 +41,14 @@ public class InMemoryPostRepositoryImpl implements InMemoryPostRepository {
 	public GenericPost savePost(GenericPost post) {
 		GenericPost savedPost = new GenericPost();
 		String id = UUID.randomUUID().toString();
-		String date = getCurrentDateAsString();
 
-		savedPost.setType(post.getType());
 		savedPost.setId(id);
+		savedPost.setType(post.getType());
 		savedPost.setText(post.getText());
 		savedPost.setUserId(post.getUserId());
-		savedPost.setDate(date);
+		savedPost.setDate(post.getDate());
 
 		allPosts.put(id, savedPost);
 		return savedPost;
-	}
-
-	private String getCurrentDateAsString() {
-		DateTime date = new DateTime();
-		DateTimeFormatter fmt = DateTimeFormat.forPattern(AbstractPost.DATE_FORMAT);
-		return date.toString(fmt);
 	}
 }

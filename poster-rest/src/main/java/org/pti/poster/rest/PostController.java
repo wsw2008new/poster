@@ -25,13 +25,6 @@ public class PostController {
 		return postService.findPostById(id);
 	}
 
-	@RequestMapping(value = "/get/last/{last}", method = RequestMethod.GET)
-	public
-	@ResponseBody
-	GenericPostCollectionDto getLastPosts(@PathVariable("last") int last) {
-		return postService.getLastPosts(last);
-	}
-
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public
 	@ResponseBody

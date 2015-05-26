@@ -1,39 +1,33 @@
 package org.pti.poster.service.post;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.pti.poster.assembler.GenericPostAssembler;
-import org.pti.poster.dto.post.GenericPostCollectionDto;
 import org.pti.poster.dto.post.GenericPostDto;
 import org.pti.poster.dto.post.UnregisteredPostDto;
 import org.pti.poster.model.post.GenericPost;
 import org.pti.poster.model.post.GenericPostType;
-import org.pti.poster.repository.post.InMemoryPostRepository;
+import org.pti.poster.repository.post.MongoPostRepository;
 import org.pti.poster.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service("postService")
 public class PostServiceImpl implements PostService {
 
+	public final static String DATE_FORMAT = "dd.MM.yyyy";
+
 	@Autowired
-	private InMemoryPostRepository inMemoryPostRepository;
+	private MongoPostRepository mongoPostRepository;
 
 	@Autowired
 	private UserServiceImpl userService;
 
 	@Override
 	public GenericPostDto findPostById(String id) {
-		GenericPost queryResult = inMemoryPostRepository.getPostById(id);
+		GenericPost queryResult = mongoPostRepository.getPostById(id);
 		return GenericPostAssembler.toDto(queryResult);
-	}
-
-	@Override
-	public GenericPostCollectionDto getLastPosts(int number) {
-		List<GenericPost> queryResult = inMemoryPostRepository.getLastPosts(number);
-		List<GenericPostDto> queryResultDto = GenericPostAssembler.toDto(queryResult);
-
-		return new GenericPostCollectionDto(queryResultDto);
 	}
 
 	@Override
@@ -42,7 +36,7 @@ public class PostServiceImpl implements PostService {
 
 		if (isPostCanBeSaved(newPost)) {
 			setPostRegistered(newPost);
-			GenericPost registeredPost = inMemoryPostRepository.savePost(newPost);
+			GenericPost registeredPost = mongoPostRepository.save(newPost);
 			return GenericPostAssembler.toDto(registeredPost);
 		} else {
 			UnregisteredPostDto unregistredPost = new UnregisteredPostDto();
@@ -54,6 +48,12 @@ public class PostServiceImpl implements PostService {
 
 	private void setPostRegistered(GenericPost post) {
 		post.setType(GenericPostType.REGISTERED_POST);
+		post.setDate(getCurrentDate());
+	}
+
+	private String getCurrentDate() {
+		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(DATE_FORMAT);
+		return new DateTime().toString(dateTimeFormatter);
 	}
 
 	private boolean postUserExists(GenericPost post) {
