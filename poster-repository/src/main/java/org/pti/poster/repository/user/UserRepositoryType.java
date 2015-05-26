@@ -1,7 +1,7 @@
 package org.pti.poster.repository.user;
 
 public enum UserRepositoryType {
-	INMEMORY;
+	MONGO;
 
 	private String typeName;
 

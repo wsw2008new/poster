@@ -2,14 +2,16 @@ package org.pti.poster.model.user;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
 public abstract class AbstractUser {
 
-	protected GenericUserType type;
-
+	@Id
 	protected String userId;
+
+	protected GenericUserType type;
 
 	protected String userNickName;
 
@@ -18,9 +20,8 @@ public abstract class AbstractUser {
 	public AbstractUser() {
 	}
 
-	public AbstractUser(GenericUserType type, String userId, String userNickName, String userName) {
+	public AbstractUser(GenericUserType type, String userNickName, String userName) {
 		this.type = type;
-		this.userId = userId;
 		this.userNickName = userNickName;
 		this.userName = userName;
 	}

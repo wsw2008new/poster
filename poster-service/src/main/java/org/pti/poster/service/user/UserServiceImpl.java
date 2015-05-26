@@ -22,11 +22,11 @@ public class UserServiceImpl implements UserService {
 
 	@PostConstruct
 	public void init() {
-		userRepository = userRepositoryFactory.getRepositoryOfType(UserRepositoryType.INMEMORY);
+		userRepository = userRepositoryFactory.getRepositoryOfType(UserRepositoryType.MONGO);
 	}
 
 	public GenericUserDto findUserById(String id) {
-		GenericUser queryResult = userRepository.getUserById(id);
+		GenericUser queryResult = userRepository.getUserByUserId(id);
 		GenericUserDto queryResultDto = null;
 
 		try {
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	public GenericUserDto createUser(GenericUserDto userDto) {
 		GenericUser user = GenericUserAssembler.fromDto(userDto);
 		user.setType(GenericUserType.REGISTERED_USER);
-		GenericUser queryResult = userRepository.saveUser(user);
+		GenericUser queryResult = userRepository.save(user);
 		GenericUserDto queryResultDto = null;
 
 		try {
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<GenericUserDto> getAllUsers() {
-		List<GenericUser> queryResult = userRepository.getAllUsers();
+		List<GenericUser> queryResult = userRepository.findAll();
 		List<GenericUserDto> queryResultDto = null;
 		try {
 			queryResultDto = GenericUserAssembler.toDto(queryResult);

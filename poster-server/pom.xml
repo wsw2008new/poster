@@ -71,12 +71,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.pti</groupId>
-                <artifactId>poster-security</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.springframework.security.oauth</groupId>
                 <artifactId>spring-security-oauth2</artifactId>
                 <version>${spring-security-oauth2.version}</version>

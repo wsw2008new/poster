@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 public class UserRepositoryFactory {
 
 	@Autowired
-	private InMemoryUserRepository inMemoryRepo;
+	private UserRepository userRepository;
 
-	public InMemoryUserRepository getRepositoryOfType(UserRepositoryType type) {
-		if (UserRepositoryType.INMEMORY.equals(type)) {
-			return inMemoryRepo;
+	public UserRepository getRepositoryOfType(UserRepositoryType type) {
+		if (UserRepositoryType.MONGO.equals(type)) {
+			return userRepository;
 		}
 		return null;
 	}

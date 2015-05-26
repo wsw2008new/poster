@@ -8,7 +8,6 @@ public class UnregisteredPostDto extends GenericPostDto {
 	public UnregisteredPostDto() {
 		type = GenericPostType.UNREGISTERED_POST;
 		date = "";
-		id = "";
 	}
 
 	@JsonIgnore

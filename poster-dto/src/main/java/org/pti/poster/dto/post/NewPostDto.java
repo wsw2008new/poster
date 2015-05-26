@@ -10,7 +10,6 @@ public class NewPostDto extends GenericPostDto {
 	public NewPostDto() {
 		type = GenericPostType.NEW_POST;
 		date = "";
-		id = "";
 	}
 
 	@JsonIgnore

@@ -2,15 +2,10 @@ package org.pti.poster.repository.user;
 
 
 import org.pti.poster.model.user.GenericUser;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.List;
+public interface UserRepository extends MongoRepository<GenericUser,String>{
 
-public interface UserRepository {
-
-	public GenericUser getUserById(String id);
-
-	public GenericUser saveUser(GenericUser user);
-
-	List<GenericUser> getAllUsers();
+	GenericUser getUserByUserId(String userId);
 
 }

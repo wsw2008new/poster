@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -28,7 +30,7 @@ import java.util.Arrays;
 @EnableAutoConfiguration
 @ComponentScan
 @Import(value = PosterAppServerApplicationConfiguration.class)
-
+@EnableMongoRepositories("org.pti.poster.repository")
 public class AppServer {
 
 	@Value("${oauth.resource:http://localhost:8811}")
