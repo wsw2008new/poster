@@ -4,26 +4,17 @@ import org.pti.poster.assembler.GenericUserAssembler;
 import org.pti.poster.dto.user.GenericUserDto;
 import org.pti.poster.model.user.GenericUser;
 import org.pti.poster.model.user.GenericUserType;
-import org.pti.poster.repository.user.UserRepository;
-import org.pti.poster.repository.user.UserRepositoryFactory;
-import org.pti.poster.repository.user.UserRepositoryType;
+import org.pti.poster.repository.user.MongoUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserRepositoryFactory userRepositoryFactory;
-	private UserRepository userRepository;
-
-	@PostConstruct
-	public void init() {
-		userRepository = userRepositoryFactory.getRepositoryOfType(UserRepositoryType.MONGO);
-	}
+	private MongoUserRepository userRepository;
 
 	public GenericUserDto findUserById(String id) {
 		GenericUser queryResult = userRepository.getUserByUserId(id);
