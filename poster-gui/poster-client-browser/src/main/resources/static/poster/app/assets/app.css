@@ -138,7 +138,10 @@ span.name {
 }
 
 .gridListdemoBasicUsage .green {
-  background: #b9f6ca;
+  background: rgba(244, 251, 207, 0.98);
+  color: #575157;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
 }
 
 .gridListdemoBasicUsage .yellow {
@@ -146,7 +149,7 @@ span.name {
 }
 
 .gridListdemoBasicUsage .blue {
-  background: #84ffff;
+  background: #ffe9a4;
 }
 
 .gridListdemoBasicUsage .purple {
