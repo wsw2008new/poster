@@ -40,21 +40,52 @@
         <h2>{{ul.selected.userId}}</h2>
 
         <p>{{ul.selected.userName}}</p>
-        <md-grid-list class="gridListdemoBasicUsage"
-                      md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
-                      md-row-height-gt-md="1:1" md-row-height="2:2"
-                      md-gutter="12px" md-gutter-gt-sm="8px">
 
-            <md-grid-tile class="green" ng-repeat="it in ul.currentPosts">
-                <md-content layout-padding style="height: 70%;width:100%;">{{it.text}}</md-content>
-            </md-grid-tile>
+        <div layout="column" flex="100" style="position:absolute;top:0;left:0;right:0;bottom:0;">
+            <md-content layout-padding flex="100">
+                <md-grid-list class="gridListdemoBasicUsage"
+                              md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+                              md-row-height-gt-md="1:1" md-row-height="2:2"
+                              md-gutter="12px" md-gutter-gt-sm="8px">
+
+                    <md-grid-tile class="green" ng-repeat="it in ul.currentPosts">
+                        <div layout="column" flex="100" style="position:absolute;top:0;left:0;right:0;bottom:0;">
+                            <md-content layout-padding flex="100" class="green">
+                                {{it.text}}
+                            </md-content>
+                        </div>
+                    </md-grid-tile>
 
 
-        </md-grid-list>
+                </md-grid-list>
+            </md-content>
+        </div>
 
-        <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-            <md-icon md-svg-icon="share"></md-icon>
-        </md-button>
+
+        <!--<div ng-controller="userContentController" layout="column" style="padding-bottom: 15px;" id="content">-->
+        <!--<md-toolbar class="md-warn">-->
+        <!--<div class="md-toolbar-tools">-->
+        <!--<h2 class="md-flex">{{ul.selected.userName}}</h2>-->
+        <!--</div>-->
+        <!--</md-toolbar>-->
+        <!--<div layout="grid">-->
+        <!--<md-content layout-padding flex="100">-->
+        <!--<md-grid-list class="gridListdemoBasicUsage"-->
+        <!--md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"-->
+        <!--md-row-height-gt-md="1:1" md-row-height="2:2"-->
+        <!--md-gutter="12px" md-gutter-gt-sm="8px">-->
+
+        <!--<md-grid-tile class="green" ng-repeat="it in ul.currentPosts">-->
+        <!--{{it.text}}-->
+        <!--</md-grid-tile>-->
+
+
+        <!--</md-grid-list>-->
+        <!--</md-content>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
     </md-content>
 
 </div>
@@ -67,12 +98,13 @@
 
 <script src="./src/users/Users.js"></script>
 <script src="./src/users/UserController.js"></script>
+<script src="./src/users/ContentController.js"></script>
 <script src="./src/users/UserService.js"></script>
 
 <script type="text/javascript">
 
     angular
-            .module('starterApp', ['ngMaterial', 'ngResource', 'users'])
+            .module('starterApp', ['ngMaterial', 'ngResource', 'users', 'userContent'])
             .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider
