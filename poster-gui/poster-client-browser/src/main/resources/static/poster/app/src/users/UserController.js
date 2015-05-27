@@ -20,10 +20,12 @@
         self.selected = null;
         self.users = [];
         self.selectUser = selectUser;
+        self.onButtonClick=onButtonClick;
         self.toggleList = toggleUsersList;
         self.share = share;
 
         // Load all registered users
+
 
         userService
             .loadAll()
@@ -47,6 +49,10 @@
             pending.then(function () {
                 $mdSidenav('left').toggle();
             });
+        }
+
+        function onButtonClick() {
+            console.log("click");
         }
 
         /**
