@@ -20,7 +20,7 @@
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
     <h1>Poster</h1>
-    <md-button class="md-raised md-warn" ng-controller="newPostButtonController as buttController" ng-click="buttController.onButtonClick()">Warn</md-button>
+    <md-button class="md-raised md-warn" ng-controller="newPostButtonController as buttController" ng-click="buttController.onButtonClick($event)">New Post</md-button>
 </md-toolbar>
 
 <div flex layout="row">
