@@ -26,7 +26,7 @@ public class PosterAppServerApplicationConfiguration {
 	@Bean
 	public SwaggerSpringMvcPlugin customImplementation() {
 		return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(
-				apiInfo()).includePatterns("/api/.*");
+				apiInfo()).includePatterns("/poster/api/.*");
 	}
 
 	private ApiInfo apiInfo() {
