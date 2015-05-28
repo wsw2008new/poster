@@ -21,3 +21,8 @@ localhost:21056/oauth/authorize?client_id=poster&redirect_uri=http://192.168.32.
 kate /etc/nginx/sites-available/default
 
 http://localhost:8811/poster/app/index.html
+
+
+mongod --port 27017 --dbpath /srv/mongodb/rs0-0 --replSet rs0 --smallfiles --oplogSize 128
+mongod --port 27018 --dbpath /srv/mongodb/rs0-1 --replSet rs0 --smallfiles --oplogSize 128
+mongod --port 27019 --dbpath /srv/mongodb/rs0-2 --replSet rs0 --smallfiles --oplogSize 128
