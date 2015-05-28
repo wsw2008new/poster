@@ -80,7 +80,7 @@ public class AppServer {
 		return resource;
 	}
 
-	@Value("localhost:27017, localhost:27018, localhost:27019")
+	@Value("localhost:27017, localhost:27018, localhost:27019, localhost:27020")
 	private ServerAddress[] serverAddressList;
 
 	@Bean
