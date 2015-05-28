@@ -16,10 +16,11 @@
 <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
 
 <md-toolbar layout="row">
-    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+    <md-button class="menu" hide-gt-sm ng-click="" aria-label="Show User List">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
     <h1>Poster</h1>
+    <md-button class="md-raised md-warn" ng-controller="newPostButtonController as buttController" ng-click="buttController.onButtonClick($event)">New Post</md-button>
 </md-toolbar>
 
 <div flex layout="row">
@@ -100,11 +101,12 @@
 <script src="./src/users/UserController.js"></script>
 <script src="./src/users/ContentController.js"></script>
 <script src="./src/users/UserService.js"></script>
+<script src="./src/users/NewPostButtonController.js"></script>
 
 <script type="text/javascript">
 
     angular
-            .module('starterApp', ['ngMaterial', 'ngResource', 'users', 'userContent'])
+            .module('starterApp', ['ngMaterial', 'ngResource', 'users','newPostButton', 'userContent'])
             .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider
