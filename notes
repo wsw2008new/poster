@@ -23,7 +23,11 @@ kate /etc/nginx/sites-available/default
 http://localhost:8811/poster/app/index.html
 
 
+rm -rf /srv/mongodb/
 mongod --port 27017 --dbpath /srv/mongodb/rs0-0 --replSet rs0 --smallfiles --oplogSize 128
 mongod --port 27018 --dbpath /srv/mongodb/rs0-1 --replSet rs0 --smallfiles --oplogSize 128
 mongod --port 27019 --dbpath /srv/mongodb/rs0-2 --replSet rs0 --smallfiles --oplogSize 128
 mongod --port 27020 --dbpath /srv/mongodb/rs0-3 --replSet rs0 --smallfiles --oplogSize 128
+
+
+mongo --port 27017
