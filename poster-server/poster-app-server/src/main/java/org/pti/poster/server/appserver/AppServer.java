@@ -1,8 +1,12 @@
 package org.pti.poster.server.appserver;
 
+import com.mongodb.Mongo;
+import com.mongodb.ServerAddress;
 import org.pti.poster.PosterAppServerApplicationConfiguration;
+import org.springframework.beans.PropertyEditorRegistrar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -72,5 +76,21 @@ public class AppServer {
 		resource.setId("auth-rest");
 		resource.setUseCurrentUri(true);
 		return resource;
+	}
+
+	@Value("localhost:27017, localhost:27018, localhost:27019")
+	private ServerAddress[] serverAddressList;
+
+	@Bean
+	public Mongo mongo() throws Exception {
+		return new Mongo(Arrays.asList(serverAddressList));
+	}
+
+	@Bean
+	public static CustomEditorConfigurer customEditorConfigurer() {
+		CustomEditorConfigurer configurer = new CustomEditorConfigurer();
+		configurer.setPropertyEditorRegistrars(
+				new PropertyEditorRegistrar[]{new ServerAddressPropertyEditorRegistrar()});
+		return configurer;
 	}
 }
