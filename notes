@@ -46,3 +46,5 @@ rs.initiate( rsconf )
 rs.add("localhost:27018")
 rs.add("localhost:27019")
 rs.add("localhost:27020")
+
+db.getMongo().setReadPref('secondaryPreferred')
