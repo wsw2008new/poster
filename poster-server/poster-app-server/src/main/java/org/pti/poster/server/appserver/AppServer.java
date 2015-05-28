@@ -1,6 +1,8 @@
 package org.pti.poster.server.appserver;
 
 import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.mongodb.ReadPreference;
 import com.mongodb.ServerAddress;
 import org.pti.poster.PosterAppServerApplicationConfiguration;
 import org.springframework.beans.PropertyEditorRegistrar;
@@ -83,7 +85,9 @@ public class AppServer {
 
 	@Bean
 	public Mongo mongo() throws Exception {
-		return new Mongo(Arrays.asList(serverAddressList));
+		Mongo mongo= new Mongo(Arrays.asList(serverAddressList));
+		mongo.setReadPreference(ReadPreference.secondaryPreferred());
+		return mongo;
 	}
 
 	@Bean
