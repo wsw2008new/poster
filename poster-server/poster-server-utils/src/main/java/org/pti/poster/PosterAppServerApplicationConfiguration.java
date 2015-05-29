@@ -5,6 +5,7 @@ import com.mangofactory.swagger.models.dto.ApiInfo;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -35,4 +36,5 @@ public class PosterAppServerApplicationConfiguration {
 				"Apache License, Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0");
 		return apiInfo;
 	}
+
 }

@@ -21,3 +21,18 @@ localhost:21056/oauth/authorize?client_id=poster&redirect_uri=http://192.168.32.
 kate /etc/nginx/sites-available/default
 
 http://localhost:8811/poster/app/index.html
+
+
+rm -rf /srv/mongodb/
+mongod --port 27017 --dbpath /srv/mongodb/rs0-0 --replSet rs0 --smallfiles --oplogSize 128
+mongod --port 27018 --dbpath /srv/mongodb/rs0-1 --replSet rs0 --smallfiles --oplogSize 128
+mongod --port 27019 --dbpath /srv/mongodb/rs0-2 --replSet rs0 --smallfiles --oplogSize 128
+mongod --port 27020 --dbpath /srv/mongodb/rs0-3 --replSet rs0 --smallfiles --oplogSize 128
+
+
+mongo --port 27017
+
+rsconf = { _id: "rs0",members: [{_id: 0,host: "localhost:27017"}]};rs.initiate( rsconf );
+rs.add("localhost:27018");rs.add("localhost:27019");rs.add("localhost:27020")
+
+db.getMongo().setReadPref('secondaryPreferred')
