@@ -19,21 +19,20 @@
 
         self.selected = null;
         self.users = [];
+        self.savePost = savePost;
         self.selectUser = selectUser;
-        self.onButtonClick=onButtonClick;
+        self.onButtonClick = onButtonClick;
         self.toggleList = toggleUsersList;
         self.share = share;
 
         // Load all registered users
 
 
-        userService
-            .loadAll()
-            .then(function (users) {
-                self.users = users;
-                self.selected = users[0];
-                console.log(users);
-            });
+        userService.loadAll().$promise.then(function(response){
+            self.users =response.data;
+            console.log(response.data)
+        });
+        self.selected = self.users[0];
 
         // *********************************
         // Internal methods
@@ -60,15 +59,15 @@
          * @param menuId
          */
         function selectUser(user) {
-            self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+            self.selected = user;
             self.toggleList();
 
-            userService
-                .loadAllPostsForUser(user.userId)
-                .then(function (posts) {
-                    self.currentPosts = posts;
-                    console.log(self.currentPosts);
-                });
+            self.currentPosts=userService.loadAllPostsForUser(user.userId);
+        }
+
+        function savePost() {
+            console.log(self);
+            userService.savePost(self.selected.userId);
         }
 
         /**

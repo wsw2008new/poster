@@ -18,10 +18,16 @@
     function UserService($q, $resource) {
         return {
             loadAll: function () {
-                // Simulate async nature of real remote calls
-                var AllUsers = $resource('/poster/api/user/registered/all/', {});
-                var allUsers = AllUsers.query();
-                return $q.when(allUsers);
+                var AllUsers = $resource('/poster/api/user/registered/all/', {}, {
+                    'query': {
+                        method: 'GET',
+                        transformResponse: function (data) {
+                            return angular.fromJson(data).users
+                        },
+                        isArray: true
+                    }
+                });
+                return AllUsers.query();
             },
 
             loadAllPostsForUser: function (id) {
@@ -35,8 +41,17 @@
                         isArray: true
                     }
                 });
-                var allPosts = AllPosts.query();
-                return $q.when(allPosts);
+                return AllPosts.query();
+            },
+
+            savePost: function (selectedUserId) {
+                var savedPost = $resource('/poster/api/post/save/', {},
+                    {
+                        'query': {
+                            method: 'POST'
+                        }
+                    });
+                savedPost.query({text: "2e2e2", userId: selectedUserId});
             }
         };
     }

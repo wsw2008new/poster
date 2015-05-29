@@ -1,5 +1,6 @@
 package org.pti.poster.rest;
 
+import org.pti.poster.dto.user.GenericUserCollectionDto;
 import org.pti.poster.dto.user.GenericUserDto;
 import org.pti.poster.dto.user.NewUserDto;
 import org.pti.poster.service.user.UserService;
@@ -30,7 +31,7 @@ public class UserController {
 	@RequestMapping(value = "/registered/all/", method = RequestMethod.GET)
 	public
 	@ResponseBody
-	List<GenericUserDto> getAllRegistered() {
+	GenericUserCollectionDto getAllRegistered() {
 		return userService.getAllUsers();
 	}
 

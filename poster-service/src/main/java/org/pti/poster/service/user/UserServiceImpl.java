@@ -1,6 +1,7 @@
 package org.pti.poster.service.user;
 
 import org.pti.poster.assembler.GenericUserAssembler;
+import org.pti.poster.dto.user.GenericUserCollectionDto;
 import org.pti.poster.dto.user.GenericUserDto;
 import org.pti.poster.model.user.GenericUser;
 import org.pti.poster.model.user.GenericUserType;
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<GenericUserDto> getAllUsers() {
+	public GenericUserCollectionDto getAllUsers() {
 		List<GenericUser> queryResult = userRepository.findAll();
 		List<GenericUserDto> queryResultDto = null;
 		try {
@@ -54,6 +55,6 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 
-		return queryResultDto;
+		return new GenericUserCollectionDto(queryResultDto);
 	}
 }

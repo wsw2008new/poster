@@ -1,5 +1,5 @@
 (function () {
-    angular.module('newPostButton', ['ngMaterial'])
+    angular.module('newPostButton', ['ngMaterial','users'])
         .controller('newPostButtonController', [
             '$log', '$scope', '$mdDialog',
             NewPostButtonController
@@ -8,8 +8,7 @@
         var self = this;
 
         self.onButtonClick = onButtonClick;
-        self.savePost=savePost;
-        self.text="aaaaa";
+        self.text = "";
 
         function onButtonClick(ev) {
             $mdDialog.show({
@@ -24,18 +23,7 @@
                 });
         }
 
-        function savePost(){
-            var savedPost = $resource('/poster/api/post/save/', {}, {
-                'query': {
-                    method: 'POST',
-                    transformResponse: function (data) {
-                        return angular.fromJson(data).posts
-                    },
-                    isArray: true
-                }
-            });
-            var allPosts = AllPosts.query();
-        }
+
     }
 
     function DialogController($scope, $mdDialog) {

@@ -1,11 +1,12 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog>
     <div ng-controller="newPostButtonController as newPostController" layout="column">
-        <md-content md-theme="docs-dark" layout-padding layout="row" layout-sm="column">
+        <md-content layout-padding layout="row" layout-sm="column">
             <md-input-container>
-                <label>Title</label>
-                <input ng-model="newPostController.text">
+                <textarea aria-label="newMsg" columns="1" ng-model="newPostController.text"></textarea>
             </md-input-container>
         </md-content>
-        <md-button ng-click="newPostController.savePost()">OK</md-button>
+    </div>
+    <div ng-controller="UserController as userController" layout="column">
+        <md-button ng-click="userController.savePost()">OK</md-button>
     </div>
 </md-dialog>
