@@ -15,8 +15,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>poster-server-utils</module>
-        <module>poster-auth-server</module>
         <module>poster-app-server</module>
     </modules>
 
