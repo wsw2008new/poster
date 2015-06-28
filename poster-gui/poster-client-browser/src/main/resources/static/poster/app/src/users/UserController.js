@@ -29,8 +29,7 @@
 
 
         userService.loadAll().$promise.then(function(response){
-            self.users =response.data;
-            console.log(response.data)
+            self.users =response;
         });
         self.selected = self.users[0];
 
