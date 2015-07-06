@@ -1,12 +1,12 @@
 <md-dialog>
-    <div ng-controller="newPostButtonController as newPostController" layout="column">
+    <div ng-controller="newPostButtonController as newPostButtonController" layout="column">
         <md-content layout-padding layout="row" layout-sm="column">
             <md-input-container>
-                <textarea aria-label="newMsg" columns="1" ng-model="newPostController.text"></textarea>
+                <textarea aria-label="newMsg" columns="1" ng-model="newPostButtonController.text"></textarea>
             </md-input-container>
         </md-content>
     </div>
-    <div ng-controller="UserController as userController" layout="column">
-        <md-button ng-click="userController.savePost()">OK</md-button>
+    <div ng-controller="userSelectionController as userSelectionController" layout="column">
+        <md-button ng-click="userSelectionController.savePost()">OK</md-button>
     </div>
 </md-dialog>

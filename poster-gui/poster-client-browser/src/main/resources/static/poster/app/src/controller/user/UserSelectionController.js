@@ -2,9 +2,9 @@
 
     angular
         .module('controllers')
-        .controller('UserController', [
-            'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
-            UserController
+        .controller('userSelectionController', [
+            'userService', 'postService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
+            UserSelectionController
         ]);
 
     /**
@@ -14,7 +14,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(userService, $mdSidenav, $mdBottomSheet, $log, $q) {
+    function UserSelectionController(userService, postService, $mdSidenav, $mdBottomSheet, $log, $q) {
         var self = this;
 
         self.selected = null;
@@ -30,7 +30,7 @@
         userService.loadAll().$promise.then(function(response){
             self.users =response;
             self.selected = self.users[0];
-            self.currentPosts = userService.loadAllPostsForUser(self.selected.userId);
+            self.currentPosts = postService.loadAllPostsForUser(self.selected.userId);
         });
 
         // *********************************
@@ -61,11 +61,11 @@
             self.selected = user;
             self.toggleList();
 
-            self.currentPosts=userService.loadAllPostsForUser(user.userId);
+            self.currentPosts=postService.loadAllPostsForUser(user.userId);
         }
 
         function savePost() {
-            userService.savePost(self.selected.userId);
+            postService.savePost(self.selected.userId);
         }
 
     }
