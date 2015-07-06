@@ -2,11 +2,9 @@
     <div ng-controller="newPostButtonController as newPostButtonController" layout="column">
         <md-content layout-padding layout="row" layout-sm="column">
             <md-input-container>
-                <textarea aria-label="newMsg" columns="1" ng-model="newPostButtonController.text"></textarea>
+                <textarea aria-label="newMsg" columns="1" ng-model="text"></textarea>
             </md-input-container>
         </md-content>
-    </div>
-    <div ng-controller="userSelectionController as userSelectionController" layout="column">
-        <md-button ng-click="userSelectionController.savePost()">OK</md-button>
+        <md-button ng-click="submitPost(text)">OK</md-button>
     </div>
 </md-dialog>

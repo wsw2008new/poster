@@ -28,6 +28,15 @@
                     }
                 });
                 return AllUsers.query();
+            },
+
+            setSelected: function (id) {
+                console.log(id);
+                self.selected = id;
+            },
+
+            getSelected: function () {
+                return self.selected;
             }
         };
     }

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
 
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
@@ -51,7 +53,8 @@
     <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
         <md-list>
             <md-list-item ng-repeat="it in ul.users">
-                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }"
+                           ng-attr-id="{{ 'user'+it.userId}}">
                     <md-icon md-svg-icon="svg-1" class="avatar"></md-icon>
                     {{it.userName}}
                 </md-button>
@@ -84,7 +87,6 @@
                 </md-grid-list>
             </md-content>
         </div>
-
 
     </md-content>
 

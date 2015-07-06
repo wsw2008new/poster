@@ -17,19 +17,23 @@
     function UserSelectionController(userService, postService, $mdSidenav, $mdBottomSheet, $log, $q) {
         var self = this;
 
+        self.userService = userService;
         self.selected = null;
         self.users = [];
         self.savePost = savePost;
         self.selectUser = selectUser;
+        self.refreshPostsForUser=refreshPostsForUser;
         self.onButtonClick = onButtonClick;
         self.toggleList = toggleUsersList;
 
         // Load all registered users
 
 
-        userService.loadAll().$promise.then(function(response){
-            self.users =response;
+        userService.loadAll().$promise.then(function (response) {
+            self.userService.setSelected(self.selected);
+            self.users = response;
             self.selected = self.users[0];
+            self.userService.setSelected(self.selected.userId);
             self.currentPosts = postService.loadAllPostsForUser(self.selected.userId);
         });
 
@@ -59,9 +63,14 @@
          */
         function selectUser(user) {
             self.selected = user;
+            self.userService.setSelected(user.userId);
             self.toggleList();
 
-            self.currentPosts=postService.loadAllPostsForUser(user.userId);
+            self.currentPosts = postService.loadAllPostsForUser(user.userId);
+        }
+
+        function refreshPostsForUser(user) {
+            self.currentPosts = postService.loadAllPostsForUser(user);
         }
 
         function savePost() {
