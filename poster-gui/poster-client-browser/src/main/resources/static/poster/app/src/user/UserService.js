@@ -44,14 +44,14 @@
                 return AllPosts.query();
             },
 
-            savePost: function (selectedUserId) {
+            savePost: function (selectedUserId, text) {
                 var savedPost = $resource('/poster/api/post/save/', {},
                     {
                         'query': {
                             method: 'POST'
                         }
                     });
-                savedPost.query({text: "2e2e2", userId: selectedUserId});
+                savedPost.query({text: text, userId: selectedUserId});
             }
         };
     }

@@ -13,7 +13,7 @@
         function onButtonClick(ev) {
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'src/users/view/addPostDialog.html',
+                templateUrl: 'src/user/view/addPostDialog.html',
                 targetEvent: ev
             })
                 .then(function (answer) {

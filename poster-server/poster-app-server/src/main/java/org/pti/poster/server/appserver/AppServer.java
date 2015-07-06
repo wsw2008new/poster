@@ -32,15 +32,16 @@ public class AppServer {
 		ApplicationContext ctx = SpringApplication.run(AppServer.class, args);
 	}
 
-	@Value("localhost:27017, localhost:27018, localhost:27019, localhost:27020")
+	//	@Value("localhost:27017, localhost:27018, localhost:27019, localhost:27020")
+	@Value("localhost:27017")
 	private ServerAddress[] serverAddressList;
 
 	@Bean
 	public Mongo mongo() throws Exception {
 		Mongo mongo = new Mongo(Arrays.asList(serverAddressList));
-		mongo.setReadPreference(ReadPreference.secondaryPreferred());
-		WriteConcern writeConcern = new WriteConcern(2, 5000);
-		mongo.setWriteConcern(writeConcern);
+//		mongo.setReadPreference(ReadPreference.secondaryPreferred());
+//		WriteConcern writeConcern = new WriteConcern(2, 5000);
+//		mongo.setWriteConcern(writeConcern);
 		return mongo;
 	}
 
