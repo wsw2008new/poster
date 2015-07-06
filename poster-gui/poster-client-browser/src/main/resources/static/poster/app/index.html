@@ -20,7 +20,9 @@
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
     <h1>Poster</h1>
-    <md-button class="md-raised md-warn" ng-controller="newPostButtonController as buttController" ng-click="buttController.onButtonClick($event)">New Post</md-button>
+    <md-button class="md-raised md-warn" ng-controller="newPostButtonController as buttController"
+               ng-click="buttController.onButtonClick($event)">New Post
+    </md-button>
 </md-toolbar>
 
 <div flex layout="row">
@@ -95,18 +97,23 @@
 <script src="./bower_components/angular-animate/angular-animate.js"></script>
 <script src="./bower_components/angular-aria/angular-aria.js"></script>
 <script src="./bower_components/angular-resource/angular-resource.js"></script>
-<script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+<script src="./bower_components/angular-material/angular-material.js"></script>
 
-<script src="./src/user/Users.js"></script>
-<script src="./src/user/UserController.js"></script>
-<script src="./src/user/ContentController.js"></script>
-<script src="./src/user/UserService.js"></script>
-<script src="./src/user/NewPostButtonController.js"></script>
+<!-- Register modules -->
+<script src="./src/controller/Module.js"></script>
+<script src="./src/service/Module.js"></script>
+
+<!-- Register services -->
+<script src="./src/service/user/UserService.js"></script>
+
+<!-- Register controllers -->
+<script src="./src/controller/user/UserController.js"></script>
+<script src="./src/controller/user/NewPostButtonController.js"></script>
 
 <script type="text/javascript">
 
     angular
-            .module('starterApp', ['ngMaterial', 'ngResource', 'users','newPostButton', 'userContent'])
+            .module('starterApp', ['ngMaterial', 'ngResource', 'services', 'controllers'])
             .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider

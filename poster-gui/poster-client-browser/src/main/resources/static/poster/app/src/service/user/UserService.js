@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('users')
+    angular.module('services')
         .service('userService', ['$q', '$resource', UserService])
         .config(function ($resourceProvider) {
             $resourceProvider.defaults.stripTrailingSlashes = false;

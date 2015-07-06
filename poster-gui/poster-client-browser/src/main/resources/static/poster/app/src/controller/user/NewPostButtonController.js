@@ -1,5 +1,5 @@
 (function () {
-    angular.module('newPostButton', ['ngMaterial','users'])
+    angular.module('controllers')
         .controller('newPostButtonController', [
             '$log', '$scope', '$mdDialog',
             NewPostButtonController
@@ -13,7 +13,7 @@
         function onButtonClick(ev) {
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'src/user/view/addPostDialog.html',
+                templateUrl: 'src/view/user/addPostDialog.html',
                 targetEvent: ev
             })
                 .then(function (answer) {
