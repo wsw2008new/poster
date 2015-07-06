@@ -15,15 +15,7 @@
 
 <body ng-app="starterApp" layout="column" ng-controller="userSelectionController as ul">
 
-<md-toolbar layout="row">
-    <md-button class="menu" hide-gt-sm ng-click="" aria-label="Show User List">
-        <md-icon md-svg-icon="menu"></md-icon>
-    </md-button>
-    <h1>Poster</h1>
-    <md-button class="md-raised md-warn" ng-controller="newPostButtonController as buttController"
-               ng-click="buttController.onButtonClick($event)">New Post
-    </md-button>
-</md-toolbar>
+<div ng-include="'./src/view/template/header.html'"></div>
 
 <div flex layout="row">
 
@@ -108,7 +100,7 @@
 <script src="./src/service/post/PostService.js"></script>
 
 <!-- Register controllers -->
-<script src="src/controller/user/UserSelectionController.js"></script>
+<script src="./src/controller/user/UserSelectionController.js"></script>
 <script src="./src/controller/user/NewPostButtonController.js"></script>
 
 <script type="text/javascript">
