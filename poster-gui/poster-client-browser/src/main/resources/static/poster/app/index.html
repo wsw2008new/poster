@@ -11,11 +11,40 @@
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="assets/app.css"/>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/angular-route/angular-route.js"></script>
+
+    <!-- Register modules -->
+    <script src="./src/controller/Module.js"></script>
+    <script src="./src/service/Module.js"></script>
+
+    <!-- Register services -->
+    <script src="./src/service/user/UserService.js"></script>
+    <script src="./src/service/post/PostService.js"></script>
+
+    <!-- Register controllers -->
+    <script src="./src/controller/user/UserSelectionController.js"></script>
+    <script src="./src/controller/user/NewPostButtonController.js"></script>
+
 </head>
 
 <body ng-app="starterApp" layout="column" ng-controller="userSelectionController as ul">
 
-<div ng-include="'./src/view/template/header.html'"></div>
+<md-toolbar layout="row">
+    <md-button class="menu" hide-gt-sm ng-click="" aria-label="Show User List">
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    <h1>Poster</h1>
+    <md-button class="md-raised md-warn" ng-controller="newPostButtonController as buttController"
+               ng-click="buttController.onButtonClick($event)">New Post
+    </md-button>
+</md-toolbar>
+
 
 <div flex layout="row">
 
@@ -57,56 +86,14 @@
         </div>
 
 
-        <!--<div ng-controller="userContentController" layout="column" style="padding-bottom: 15px;" id="content">-->
-        <!--<md-toolbar class="md-warn">-->
-        <!--<div class="md-toolbar-tools">-->
-        <!--<h2 class="md-flex">{{ul.selected.userName}}</h2>-->
-        <!--</div>-->
-        <!--</md-toolbar>-->
-        <!--<div layout="grid">-->
-        <!--<md-content layout-padding flex="100">-->
-        <!--<md-grid-list class="gridListdemoBasicUsage"-->
-        <!--md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"-->
-        <!--md-row-height-gt-md="1:1" md-row-height="2:2"-->
-        <!--md-gutter="12px" md-gutter-gt-sm="8px">-->
-
-        <!--<md-grid-tile class="green" ng-repeat="it in ul.currentPosts">-->
-        <!--{{it.text}}-->
-        <!--</md-grid-tile>-->
-
-
-        <!--</md-grid-list>-->
-        <!--</md-content>-->
-        <!--</div>-->
-        <!--</div>-->
-
-
     </md-content>
 
 </div>
 
-<script src="./bower_components/angular/angular.js"></script>
-<script src="./bower_components/angular-animate/angular-animate.js"></script>
-<script src="./bower_components/angular-aria/angular-aria.js"></script>
-<script src="./bower_components/angular-resource/angular-resource.js"></script>
-<script src="./bower_components/angular-material/angular-material.js"></script>
-
-<!-- Register modules -->
-<script src="./src/controller/Module.js"></script>
-<script src="./src/service/Module.js"></script>
-
-<!-- Register services -->
-<script src="./src/service/user/UserService.js"></script>
-<script src="./src/service/post/PostService.js"></script>
-
-<!-- Register controllers -->
-<script src="./src/controller/user/UserSelectionController.js"></script>
-<script src="./src/controller/user/NewPostButtonController.js"></script>
-
 <script type="text/javascript">
 
     angular
-            .module('starterApp', ['ngMaterial', 'ngResource', 'services', 'controllers'])
+            .module('starterApp', ['ngMaterial', 'ngResource', 'ngRoute', 'services', 'controllers'])
             .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider
