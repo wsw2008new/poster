@@ -30,7 +30,6 @@
         userService.loadAll().$promise.then(function(response){
             self.users =response;
             self.selected = self.users[0];
-            console.log(self.selected);
             self.currentPosts = userService.loadAllPostsForUser(self.selected.userId);
         });
 
@@ -66,7 +65,6 @@
         }
 
         function savePost() {
-            console.log(self);
             userService.savePost(self.selected.userId);
         }
 
