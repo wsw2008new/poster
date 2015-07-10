@@ -72,11 +72,11 @@ public class PostServiceImpl implements PostService {
 		return userService.findUserById(post.getUserId()) != null;
 	}
 
+	private boolean postMatchesLength(GenericPost post) {
+		return post.getText() != null && post.getText().length() > 0;
+	}
+
 	private boolean isPostCanBeSaved(GenericPost post) {
-		if (postUserExists(post)) {
-			return true;
-		} else {
-			return false;
-		}
+		return postUserExists(post) && postMatchesLength(post);
 	}
 }

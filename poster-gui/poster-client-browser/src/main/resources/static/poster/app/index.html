@@ -21,9 +21,14 @@
     <script src="./bower_components/angular-material/angular-material.js"></script>
     <script src="./bower_components/angular-route/angular-route.js"></script>
 
+
     <!-- Register modules -->
+    <script src="./src/directives/Module.js"></script>
     <script src="./src/controller/Module.js"></script>
     <script src="./src/service/Module.js"></script>
+
+    <!-- Register directives -->
+    <script src="./src/directives/post/DeletePost.js"></script>
 
     <!-- Register services -->
     <script src="./src/service/user/UserService.js"></script>
@@ -78,6 +83,9 @@
                     <md-grid-tile class="green" ng-repeat="it in ul.currentPosts">
                         <div layout="column" flex="100" style="position:absolute;top:0;left:0;right:0;bottom:0;">
                             <md-content layout-padding flex="100" class="green">
+                                <md-content  class="red" style="display:none;z-index:100" showonhoverparent>
+                                    Delete
+                                </md-content>
                                 {{it.text}}
                             </md-content>
                         </div>
@@ -95,7 +103,7 @@
 <script type="text/javascript">
 
     angular
-            .module('starterApp', ['ngMaterial', 'ngResource', 'ngRoute', 'services', 'controllers'])
+            .module('starterApp', ['ngMaterial', 'ngResource', 'ngRoute', 'directives', 'services', 'controllers'])
             .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider

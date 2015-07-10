@@ -35,10 +35,15 @@
                 var savedPost = $resource('/poster/api/post/save/', {},
                     {
                         'query': {
-                            method: 'POST'
+                            method: 'POST',
+                            transformResponse: function (data) {
+                                console.log(angular.fromJson(data).errorMessages)
+                                return angular.fromJson(data).errorMessages
+                            },
+                            isArray: true
                         }
                     });
-                savedPost.query({text: text, userId: selectedUserId});
+                return savedPost.query({text: text, userId: selectedUserId});
             }
         };
     }

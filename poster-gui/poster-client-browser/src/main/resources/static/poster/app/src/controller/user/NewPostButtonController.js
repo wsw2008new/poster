@@ -10,23 +10,25 @@
         self.userSelectionController = $controller('userSelectionController');
 
         self.onButtonClick = onButtonClick;
-        self.triggerUser=triggerUser;
+        self.triggerUser = triggerUser;
         self.userService = userService;
         self.postService = postService;
         self.text = "";
 
         $scope.submitPost = function (text) {
             self.selectedUser = userService.getSelected();
-            self.postService.savePost(self.selectedUser, text);
-            $mdDialog.hide();
+            var postSaveResultErrors = self.postService.savePost(self.selectedUser, text);
+            if (postSaveResultErrors.length != 0) {
 
-            self.userSelectionController.refreshPostsForUser(self.selectedUser);
-            $timeout(self.triggerUser, 0, false)
+                $mdDialog.hide();
 
+                self.userSelectionController.refreshPostsForUser(self.selectedUser);
+                $timeout(self.triggerUser, 0, false)
+            }
 
         };
 
-        function triggerUser(){
+        function triggerUser() {
             angular.element('#user' + self.selectedUser).trigger('click');
         }
 
