@@ -1,13 +1,13 @@
 upstream poster {
   ip_hash;
-  server 192.168.32.174:8812 fail_timeout=3;
-  server 192.168.32.174:8813 fail_timeout=3;
+  server 127.0.0.1:8812 fail_timeout=3;
+  server 127.0.0.1:8813 fail_timeout=3;
 }
 
 upstream poster-auth {
   ip_hash;
-  server 192.168.32.174:7712 fail_timeout=3;
-  server 192.168.32.174:7713 fail_timeout=3;
+  server 127.0.0.1:7712 fail_timeout=3;
+  server 127.0.0.1:7713 fail_timeout=3;
 }
  
 server {
