@@ -18,7 +18,7 @@
         $scope.submitPost = function (text) {
             self.selectedUser = userService.getSelected();
             var postSaveResultErrors = self.postService.savePost(self.selectedUser, text);
-            if (postSaveResultErrors.length != 0) {
+            if (postSaveResultErrors.length == 0) {
 
                 $mdDialog.hide();
 

@@ -37,7 +37,6 @@
                         'query': {
                             method: 'POST',
                             transformResponse: function (data) {
-                                console.log(angular.fromJson(data).errorMessages)
                                 return angular.fromJson(data).errorMessages
                             },
                             isArray: true
