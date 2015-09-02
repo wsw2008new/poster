@@ -27,6 +27,10 @@
 
         };
 
+        $scope.declineDeletion = function (i) {
+            $mdDialog.hide();
+        };
+
         function triggerUser() {
             angular.element('#user' + self.selectedUser).trigger('click');
         }
