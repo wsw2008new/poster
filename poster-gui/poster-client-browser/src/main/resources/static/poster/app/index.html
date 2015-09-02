@@ -37,6 +37,7 @@
     <!-- Register controllers -->
     <script src="./src/controller/user/UserSelectionController.js"></script>
     <script src="./src/controller/user/NewPostButtonController.js"></script>
+    <script src="./src/controller/user/DeletePostButtonController.js"></script>
 
 </head>
 
@@ -83,7 +84,9 @@
                     <md-grid-tile class="green" ng-repeat="it in ul.currentPosts">
                         <div layout="column" flex="100" class="grid-post">
                             <md-content layout-padding flex="100" class="post-controls">
-                                <md-button class="md-fab md-delete-micro" aria-label="Eat cake">
+                                <md-button class="md-fab md-delete-micro"
+                                           ng-controller="deletePostButtonController as deleteButtonController"
+                                           ng-click="deleteButtonController.onButtonClick($event, it)" aria-label="Delete Post">
                                     <md-icon md-svg-icon="delete-post"></md-icon>
                                 </md-button>
                             </md-content>

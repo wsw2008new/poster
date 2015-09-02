@@ -31,12 +31,19 @@
             },
 
             setSelected: function (id) {
-                console.log(id);
                 self.selected = id;
             },
 
             getSelected: function () {
                 return self.selected;
+            },
+
+            setSelectedPost: function (id) {
+                self.selectedPost = id;
+            },
+
+            getSelectedPost: function () {
+                return self.selectedPost;
             }
         };
     }

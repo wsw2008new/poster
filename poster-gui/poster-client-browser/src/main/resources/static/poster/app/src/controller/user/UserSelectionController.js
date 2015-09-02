@@ -19,6 +19,7 @@
 
         self.userService = userService;
         self.selected = null;
+        self.selectedPost=null;
         self.users = [];
         self.savePost = savePost;
         self.selectUser = selectUser;
@@ -67,6 +68,11 @@
             self.toggleList();
 
             self.currentPosts = postService.loadAllPostsForUser(user.userId);
+        }
+
+        function selectPost(post) {
+            self.selectedPost = post;
+            self.userService.setSelectedPost(post.id);
         }
 
         function refreshPostsForUser(user) {

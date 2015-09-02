@@ -44,6 +44,17 @@
                         }
                     });
                 return savedPost.query({text: text, userId: selectedUserId});
+            },
+
+            deletePost: function (id) {
+                var deletedPost = $resource('/poster/api/post/delete/id/' + id, {},
+                    {
+                        'query': {
+                            method: 'POST',
+                            isArray: false
+                        }
+                    });
+                deletedPost.query();
             }
         };
     }

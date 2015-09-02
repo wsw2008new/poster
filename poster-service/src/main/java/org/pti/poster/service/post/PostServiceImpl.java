@@ -58,6 +58,11 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
+	@Override
+	public void deletePost(String id) {
+		mongoPostRepository.delete(id);
+	}
+
 	private void setPostRegistered(GenericPost post) {
 		post.setType(GenericPostType.REGISTERED_POST);
 		post.setDate(getCurrentDate());

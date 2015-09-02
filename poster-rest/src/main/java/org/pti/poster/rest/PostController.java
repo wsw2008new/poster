@@ -39,6 +39,13 @@ public class PostController {
 		return postService.savePost(post);
 	}
 
+	@RequestMapping(value = "/delete/id/{id}", method = RequestMethod.POST)
+	public
+	@ResponseBody
+	void delete(@PathVariable(value = "id") String id) {
+		postService.deletePost(id);
+	}
+
 	@RequestMapping(value = "/cache", method = RequestMethod.POST)
 	public
 	@ResponseBody
