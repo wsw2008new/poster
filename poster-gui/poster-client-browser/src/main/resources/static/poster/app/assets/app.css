@@ -132,30 +132,30 @@ span.name {
     margin: 8px;
 }
 
-.gridListdemoBasicUsage .gray {
+.gray {
     background: #f5f5f5;
 }
 
-.gridListdemoBasicUsage .green {
+.green {
     background: rgba(244, 251, 207, 0.98);
     color: #575157;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
 }
 
-.gridListdemoBasicUsage .yellow {
+.yellow {
     background: #ffff8d;
 }
 
-.gridListdemoBasicUsage .blue {
-    background: #ffe9a4;
+.blue {
+    background: #03a9f4;
 }
 
-.gridListdemoBasicUsage .purple {
+.purple {
     background: #b388ff;
 }
 
-.gridListdemoBasicUsage .red {
+.red {
     background: #ff8a80;
 }
 

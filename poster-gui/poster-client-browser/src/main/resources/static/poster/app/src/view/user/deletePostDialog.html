@@ -3,7 +3,7 @@
         <md-content layout-padding layout="row" layout-sm="column">
             You are going to delete post (id {{ modal.post.id }}).
         </md-content>
-        <md-button ng-click="submitDeletion(modal.post.id)">Accept</md-button>
-        <md-button ng-click="declineDeletion()">Decline</md-button>
+        <md-button ng-click="declineDeletion()" class="green">Keep</md-button>
+        <md-button ng-click="submitDeletion(modal.post.id)" class="red">Delete</md-button>
     </div>
 </md-dialog>
