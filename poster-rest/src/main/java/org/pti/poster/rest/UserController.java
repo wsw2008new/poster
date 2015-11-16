@@ -30,7 +30,7 @@ public class UserController {
 
 	@RequestMapping(value = "/registered/all/", method = RequestMethod.GET)
 	@ResponseBody
-	public9
+	public
 	GenericUserCollectionDto getAllRegistered() {
 		return userService.getAllUsers();
 	}
