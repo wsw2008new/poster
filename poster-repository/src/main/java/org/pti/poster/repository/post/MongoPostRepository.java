@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface MongoPostRepository extends MongoRepository<GenericPost,String>{
 
-	GenericPost getPostById(String id);
+	GenericPost getPostById(String id) throws Exception;
 
-	List<GenericPost> getPostsByUserObjectId(ObjectId userObjectId);
+	List<GenericPost> getPostsByUserObjectId(ObjectId userObjectId) throws Exception;
 
 }

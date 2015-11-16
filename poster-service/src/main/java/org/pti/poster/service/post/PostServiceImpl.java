@@ -12,6 +12,8 @@ import org.pti.poster.model.post.GenericPost;
 import org.pti.poster.model.post.GenericPostType;
 import org.pti.poster.repository.post.MongoPostRepository;
 import org.pti.poster.service.user.UserServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,8 @@ import java.util.List;
 @Service("postService")
 public class PostServiceImpl implements PostService {
 
-	public final static String DATE_FORMAT = "dd.MM.yyyy";
+	public static final String DATE_FORMAT = "dd.MM.yyyy";
+	private static final Logger LOGGER = LoggerFactory.getLogger(PostServiceImpl.class);
 
 	@Autowired
 	private MongoPostRepository mongoPostRepository;
@@ -30,13 +33,23 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public GenericPostDto findPostById(String id) {
-		GenericPost queryResult = mongoPostRepository.getPostById(id);
+		GenericPost queryResult = null;
+		try {
+			queryResult = mongoPostRepository.getPostById(id);
+		} catch (Exception e) {
+			LOGGER.warn("No post with id found", e);
+		}
 		return GenericPostAssembler.toDto(queryResult);
 	}
 
 	@Override
 	public GenericPostCollectionDto findPostsByUserId(String id) {
-		List<GenericPost> posts = mongoPostRepository.getPostsByUserObjectId(new ObjectId(id));
+		List<GenericPost> posts = null;
+		try {
+			posts = mongoPostRepository.getPostsByUserObjectId(new ObjectId(id));
+		} catch (Exception e) {
+			LOGGER.warn("No user with id found", e);
+		}
 		List<GenericPostDto> postsDto = GenericPostAssembler.toDto(posts);
 
 		return new GenericPostCollectionDto(postsDto);
@@ -63,12 +76,12 @@ public class PostServiceImpl implements PostService {
 		mongoPostRepository.delete(id);
 	}
 
-	private void setPostRegistered(GenericPost post) {
+	private static void setPostRegistered(GenericPost post) {
 		post.setType(GenericPostType.REGISTERED_POST);
 		post.setDate(getCurrentDate());
 	}
 
-	private String getCurrentDate() {
+	private static String getCurrentDate() {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(DATE_FORMAT);
 		return new DateTime().toString(dateTimeFormatter);
 	}
@@ -77,7 +90,7 @@ public class PostServiceImpl implements PostService {
 		return userService.findUserById(post.getUserId()) != null;
 	}
 
-	private boolean postMatchesLength(GenericPost post) {
+	private static boolean postMatchesLength(GenericPost post) {
 		return post.getText() != null && post.getText().length() > 0;
 	}
 

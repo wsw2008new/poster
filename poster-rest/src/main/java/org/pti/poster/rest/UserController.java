@@ -22,15 +22,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public
 	@ResponseBody
+	public
 	GenericUserDto register(@RequestBody NewUserDto user) {
 		return userService.createUser(user);
 	}
 
 	@RequestMapping(value = "/registered/all/", method = RequestMethod.GET)
-	public
 	@ResponseBody
+	public9
 	GenericUserCollectionDto getAllRegistered() {
 		return userService.getAllUsers();
 	}

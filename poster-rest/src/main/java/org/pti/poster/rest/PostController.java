@@ -19,44 +19,38 @@ public class PostController {
 	PostCachingService postCachingService;
 
 	@RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET)
-	public
 	@ResponseBody
-	GenericPostDto getPost(@PathVariable(value = "id") String id) {
+	public GenericPostDto getPost(@PathVariable(value = "id") String id) {
 		return postService.findPostById(id);
 	}
 
 	@RequestMapping(value = "/get/user/{id}", method = RequestMethod.GET)
-	public
 	@ResponseBody
-	GenericPostCollectionDto getPostsByUserId(@PathVariable(value = "id") String id) {
+	public GenericPostCollectionDto getPostsByUserId(@PathVariable(value = "id") String id) {
 		return postService.findPostsByUserId(id);
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public
 	@ResponseBody
-	GenericPostDto save(@RequestBody NewPostDto post) {
+	public GenericPostDto save(@RequestBody NewPostDto post) {
 		return postService.savePost(post);
 	}
 
 	@RequestMapping(value = "/delete/id/{id}", method = RequestMethod.POST)
-	public
 	@ResponseBody
-	void delete(@PathVariable(value = "id") String id) {
+	public void delete(@PathVariable(value = "id") String id) {
 		postService.deletePost(id);
 	}
 
 	@RequestMapping(value = "/cache", method = RequestMethod.POST)
-	public
 	@ResponseBody
-	void cache(@RequestBody NewPostDto post) {
+	public void cache(@RequestBody NewPostDto post) {
 		postCachingService.cachePost(post);
 	}
 
 	@RequestMapping(value = "/get/cached/", method = RequestMethod.GET)
-	public
 	@ResponseBody
-	GenericPostCollectionDto getCachedPosts() {
+	public GenericPostCollectionDto getCachedPosts() {
 		return postCachingService.getCachedPosts();
 	}
 
