@@ -50,9 +50,18 @@ public class PostServiceImpl implements PostService {
 		} catch (Exception e) {
 			LOGGER.warn("No user with id found", e);
 		}
-		List<GenericPostDto> postsDto = GenericPostAssembler.toDto(posts);
+		List<GenericPostDto> postsDto = null;
+		try {
+			postsDto = GenericPostAssembler.toDto(posts);
+		} catch (Exception e) {
+			LOGGER.warn("No posts found", e);
+		}
 
-		return new GenericPostCollectionDto(postsDto);
+		GenericPostCollectionDto result = new GenericPostCollectionDto();
+		if (postsDto == null) {
+			result.getErrorMessages().add("No posts found");
+		}
+		return result;
 	}
 
 	@Override

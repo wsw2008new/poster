@@ -31,8 +31,12 @@ public class GenericPostAssembler extends AbstractAssembler {
 		return result;
 	}
 
-	public static List<GenericPostDto> toDto(List<GenericPost> posts) {
+	public static List<GenericPostDto> toDto(List<GenericPost> posts) throws Exception{
 		List<GenericPostDto> result = new ArrayList<>();
+
+		if(posts==null){
+			throw new NullPointerException("No posts found");
+		}
 
 		for (GenericPost post : posts) {
 			result.add(toDto(post));
