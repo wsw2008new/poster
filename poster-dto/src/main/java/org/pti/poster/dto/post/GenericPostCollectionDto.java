@@ -15,11 +15,8 @@ public class GenericPostCollectionDto implements AbstractDtoEntity {
 	protected List<String> errorMessages;
 
 	public GenericPostCollectionDto() {
+		posts=new ArrayList<>();
 		errorMessages = new ArrayList<>();
-	}
-
-	public GenericPostCollectionDto(List<GenericPostDto> posts) {
-		this.posts = posts;
 	}
 
 }

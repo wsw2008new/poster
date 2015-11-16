@@ -19,6 +19,9 @@
         return {
             loadAllPostsForUser: function (id) {
                 // Simulate async nature of real remote calls
+                if (id === null) {
+                    return {};
+                }
                 var AllPosts = $resource('/poster/api/post/get/user/' + id, {}, {
                     'query': {
                         method: 'GET',

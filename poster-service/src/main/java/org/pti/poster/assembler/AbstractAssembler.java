@@ -1,18 +1,27 @@
 package org.pti.poster.assembler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractAssembler {
+public abstract class AbstractAssembler {
 
-	protected static Object getNewInstanceFor(String className) throws Exception {
-		Object result;
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractAssembler.class);
+
+	protected static Object getNewInstanceFor(String className) {
+		Object result = null;
 		Class<?> clazz;
 
-		clazz = Class.forName(className);
-		Constructor<?> ctor = clazz.getConstructor(getConstructorArgumentClasses());
-		result = ctor.newInstance(getConstructorArguments());
+		try {
+			clazz = Class.forName(className);
+			Constructor<?> ctor = clazz.getConstructor(getConstructorArgumentClasses());
+			result = ctor.newInstance(getConstructorArguments());
+		} catch (Exception e) {
+			LOGGER.warn("Assembler creation error", e);
+		}
 
 		return result;
 	}

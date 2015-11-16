@@ -54,17 +54,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public GenericUserCollectionDto getAllUsers() {
 		List<GenericUser> queryResult = userRepository.findAll();
-		List<GenericUserDto> queryResultDto = null;
-		GenericUserCollectionDto result;
+		GenericUserCollectionDto result = null;
 
 		try {
-			queryResultDto = GenericUserAssembler.toDto(queryResult);
+			result = GenericUserAssembler.toDto(queryResult);
 		} catch (Exception e) {
 			LOGGER.warn("No users found", e);
 		}
 
-		result = new GenericUserCollectionDto(queryResultDto);
-		if (queryResultDto == null || queryResult.isEmpty()) {
+		if (result.getUsers() == null || queryResult.isEmpty()) {
 			result.getErrorMessages().add("No users found");
 		}
 

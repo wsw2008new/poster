@@ -15,11 +15,9 @@ public class GenericUserCollectionDto implements AbstractDtoEntity {
 	protected List<String> errorMessages;
 
 	public GenericUserCollectionDto() {
+		users = new ArrayList<>();
 		errorMessages = new ArrayList<>();
 	}
 
-	public GenericUserCollectionDto(List<GenericUserDto> users) {
-		this.users = users;
-	}
 
 }

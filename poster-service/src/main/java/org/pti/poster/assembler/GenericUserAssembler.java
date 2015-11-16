@@ -1,5 +1,6 @@
 package org.pti.poster.assembler;
 
+import org.pti.poster.dto.user.GenericUserCollectionDto;
 import org.pti.poster.dto.user.GenericUserDto;
 import org.pti.poster.dto.user.RegisteredUserDto;
 import org.pti.poster.dto.user.UnregisteredUserDto;
@@ -7,6 +8,7 @@ import org.pti.poster.model.user.AbstractUser;
 import org.pti.poster.model.user.GenericUser;
 
 import javax.inject.Singleton;
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,22 +19,12 @@ public class GenericUserAssembler extends AbstractAssembler {
 		return convertFromDto(userDto);
 	}
 
-	public static GenericUserDto toDto(GenericUser user) throws Exception {
-		GenericUserDto result = null;
-
-		result = convertToDto(user);
-
-		return result;
+	public static GenericUserDto toDto(GenericUser user) {
+		return convertToDto(user);
 	}
 
-	public static List<GenericUserDto> toDto(List<GenericUser> users) throws Exception {
-		List<GenericUserDto> result = new ArrayList<>();
-
-		for (GenericUser user : users) {
-			result.add(toDto(user));
-		}
-
-		return result;
+	public static GenericUserCollectionDto toDto(List<GenericUser> users) {
+		return convertToDto(users);
 	}
 
 	public static void copyFieldsFromTo(AbstractUser from, AbstractUser to) {
@@ -42,7 +34,19 @@ public class GenericUserAssembler extends AbstractAssembler {
 		to.setUserNickName(from.getUserNickName());
 	}
 
-	private static GenericUserDto convertToDto(GenericUser user) throws Exception {
+	private static GenericUserCollectionDto convertToDto(List<GenericUser> users) {
+		GenericUserCollectionDto result = new GenericUserCollectionDto();
+
+		if (users != null && !users.isEmpty()) {
+			for (GenericUser user : users) {
+				result.getUsers().add(toDto(user));
+			}
+		}
+
+		return result;
+	}
+
+	private static GenericUserDto convertToDto(GenericUser user) {
 		String className;
 
 		if (user == null) {

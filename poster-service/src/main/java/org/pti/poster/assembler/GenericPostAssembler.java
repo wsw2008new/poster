@@ -1,10 +1,7 @@
 package org.pti.poster.assembler;
 
 import org.bson.types.ObjectId;
-import org.pti.poster.dto.post.GenericPostDto;
-import org.pti.poster.dto.post.NewPostDto;
-import org.pti.poster.dto.post.RegisteredPostDto;
-import org.pti.poster.dto.post.UnregisteredPostDto;
+import org.pti.poster.dto.post.*;
 import org.pti.poster.model.post.AbstractPost;
 import org.pti.poster.model.post.GenericPost;
 
@@ -20,29 +17,11 @@ public class GenericPostAssembler extends AbstractAssembler {
 	}
 
 	public static GenericPostDto toDto(GenericPost post) {
-		GenericPostDto result = null;
-
-		try {
-			result = convertToDto(post);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
+		return convertToDto(post);
 	}
 
-	public static List<GenericPostDto> toDto(List<GenericPost> posts) throws Exception{
-		List<GenericPostDto> result = new ArrayList<>();
-
-		if(posts==null){
-			throw new NullPointerException("No posts found");
-		}
-
-		for (GenericPost post : posts) {
-			result.add(toDto(post));
-		}
-
-		return result;
+	public static GenericPostCollectionDto toDto(List<GenericPost> posts) {
+		return convertToDto(posts);
 	}
 
 	public static void copyFieldsFromTo(AbstractPost from, AbstractPost to) {
@@ -54,17 +33,33 @@ public class GenericPostAssembler extends AbstractAssembler {
 		manageAbstarctPostUserId(from, to);
 	}
 
+	private static GenericPostCollectionDto convertToDto(List<GenericPost> posts) {
+		GenericPostCollectionDto result = new GenericPostCollectionDto();
+
+		if (posts == null) {
+			throw new NullPointerException("No posts found");
+		}
+
+		for (GenericPost post : posts) {
+			result.getPosts().add(toDto(post));
+		}
+
+		return result;
+	}
+
 	private static void manageAbstarctPostUserId(AbstractPost from, AbstractPost to) {
 		if (from.getUserObjectId() != null) {
 			to.setUserId(from.getUserObjectId().toHexString());
 			to.setUserObjectId(from.getUserObjectId());
 		} else {
-			to.setUserObjectId(new ObjectId(from.getUserId()));
-			to.setUserId(from.getUserId());
+			if (from.getUserId() != null) {
+				to.setUserObjectId(new ObjectId(from.getUserId()));
+				to.setUserId(from.getUserId());
+			}
 		}
 	}
 
-	private static GenericPostDto convertToDto(AbstractPost post) throws Exception {
+	private static GenericPostDto convertToDto(GenericPost post) {
 		String className;
 
 		switch (post.getType()) {

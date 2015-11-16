@@ -46,21 +46,19 @@ public class PostServiceImpl implements PostService {
 	public GenericPostCollectionDto findPostsByUserId(String id) {
 		List<GenericPost> posts = null;
 		try {
-			posts = mongoPostRepository.getPostsByUserObjectId(new ObjectId(id));
+			posts = mongoPostRepository.getPostsByUserObjectId(getUserObjectId(id));
 		} catch (Exception e) {
 			LOGGER.warn("No user with id found", e);
 		}
-		List<GenericPostDto> postsDto = null;
+
+		GenericPostCollectionDto result = null;
 		try {
-			postsDto = GenericPostAssembler.toDto(posts);
+			result = GenericPostAssembler.toDto(posts);
 		} catch (Exception e) {
+			result.getErrorMessages().add("No posts found");
 			LOGGER.warn("No posts found", e);
 		}
 
-		GenericPostCollectionDto result = new GenericPostCollectionDto();
-		if (postsDto == null) {
-			result.getErrorMessages().add("No posts found");
-		}
 		return result;
 	}
 
@@ -93,6 +91,14 @@ public class PostServiceImpl implements PostService {
 	private static String getCurrentDate() {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(DATE_FORMAT);
 		return new DateTime().toString(dateTimeFormatter);
+	}
+
+	private static ObjectId getUserObjectId(String id) throws Exception {
+		if (id != null && id.length() != 0) {
+			return new ObjectId(id);
+		} else {
+			throw new NullPointerException("Illegal user id");
+		}
 	}
 
 	private boolean postUserExists(GenericPost post) {
