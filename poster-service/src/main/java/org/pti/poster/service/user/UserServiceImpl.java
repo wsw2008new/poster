@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		result = new GenericUserCollectionDto(queryResultDto);
-		if (queryResultDto == null) {
+		if (queryResultDto == null || queryResult.isEmpty()) {
 			result.getErrorMessages().add("No users found");
 		}
 
