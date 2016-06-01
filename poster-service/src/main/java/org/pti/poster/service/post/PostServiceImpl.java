@@ -11,6 +11,7 @@ import org.pti.poster.dto.post.UnregisteredPostDto;
 import org.pti.poster.model.post.GenericPost;
 import org.pti.poster.model.post.GenericPostType;
 import org.pti.poster.repository.post.MongoPostRepository;
+import org.pti.poster.service.jms.JmsMessageSender;
 import org.pti.poster.service.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private UserServiceImpl userService;
+
+    @Autowired
+    private JmsMessageSender jmsMessageSender;
 
 	@Override
 	public GenericPostDto findPostById(String id) {
@@ -45,6 +49,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public GenericPostDto savePost(GenericPostDto newPostDto) {
 		GenericPost newPost = GenericPostAssembler.fromDto(newPostDto);
+        jmsMessageSender.sendText(newPost.toString());
 
 		if (isPostCanBeSaved(newPost)) {
 			setPostRegistered(newPost);
