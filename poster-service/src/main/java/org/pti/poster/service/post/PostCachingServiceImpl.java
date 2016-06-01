@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service("postCachingService")
@@ -36,15 +34,15 @@ public class PostCachingServiceImpl implements PostCachingService {
 		return getGenericPostCollectionDtoFrom((QueryResultSet) hazelcastInstance.getMap("posts").values());
 	}
 
-	private void setPostDtoRandomId(GenericPostDto post) {
+	private static void setPostDtoRandomId(GenericPostDto post) {
 		post.setId(UUID.randomUUID().toString());
 	}
 
-	private GenericPostCollectionDto getGenericPostCollectionDtoFrom(QueryResultSet set) {
-		List<GenericPostDto> posts = new ArrayList<>();
+	private static GenericPostCollectionDto getGenericPostCollectionDtoFrom(QueryResultSet set) {
+		GenericPostCollectionDto result = new GenericPostCollectionDto();
 		for (Object obj : set.toArray()) {
-			posts.add((GenericPostDto) obj);
+			result.getPosts().add((GenericPostDto) obj);
 		}
-		return new GenericPostCollectionDto(posts);
+		return result;
 	}
 }

@@ -19,6 +19,9 @@
         return {
             loadAllPostsForUser: function (id) {
                 // Simulate async nature of real remote calls
+                if (id === null) {
+                    return {};
+                }
                 var AllPosts = $resource('/poster/api/post/get/user/' + id, {}, {
                     'query': {
                         method: 'GET',
@@ -37,13 +40,23 @@
                         'query': {
                             method: 'POST',
                             transformResponse: function (data) {
-                                console.log(angular.fromJson(data).errorMessages)
-                                return angular.fromJson(data).errorMessages
+                                return angular.fromJson(data).errorMessages;
                             },
                             isArray: true
                         }
                     });
                 return savedPost.query({text: text, userId: selectedUserId});
+            },
+
+            deletePost: function (id) {
+                var deletedPost = $resource('/poster/api/post/delete/id/' + id, {},
+                    {
+                        'query': {
+                            method: 'POST',
+                            isArray: false
+                        }
+                    });
+                deletedPost.query();
             }
         };
     }

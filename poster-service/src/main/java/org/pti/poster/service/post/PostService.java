@@ -11,4 +11,5 @@ public interface PostService {
 
 	GenericPostDto savePost(GenericPostDto newPostDto);
 
+	void deletePost(String id);
 }

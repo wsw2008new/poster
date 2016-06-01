@@ -13,6 +13,8 @@ import org.pti.poster.model.post.GenericPostType;
 import org.pti.poster.repository.post.MongoPostRepository;
 import org.pti.poster.service.jms.JmsMessageSender;
 import org.pti.poster.service.user.UserServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,8 @@ import java.util.List;
 @Service("postService")
 public class PostServiceImpl implements PostService {
 
-	public final static String DATE_FORMAT = "dd.MM.yyyy";
+	public static final String DATE_FORMAT = "dd.MM.yyyy";
+	private static final Logger LOGGER = LoggerFactory.getLogger(PostServiceImpl.class);
 
 	@Autowired
 	private MongoPostRepository mongoPostRepository;
@@ -34,16 +37,33 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public GenericPostDto findPostById(String id) {
-		GenericPost queryResult = mongoPostRepository.getPostById(id);
+		GenericPost queryResult = null;
+		try {
+			queryResult = mongoPostRepository.getPostById(id);
+		} catch (Exception e) {
+			LOGGER.warn("No post with id found", e);
+		}
 		return GenericPostAssembler.toDto(queryResult);
 	}
 
 	@Override
 	public GenericPostCollectionDto findPostsByUserId(String id) {
-		List<GenericPost> posts = mongoPostRepository.getPostsByUserObjectId(new ObjectId(id));
-		List<GenericPostDto> postsDto = GenericPostAssembler.toDto(posts);
+		List<GenericPost> posts = null;
+		try {
+			posts = mongoPostRepository.getPostsByUserObjectId(getUserObjectId(id));
+		} catch (Exception e) {
+			LOGGER.warn("No user with id found", e);
+		}
 
-		return new GenericPostCollectionDto(postsDto);
+		GenericPostCollectionDto result = null;
+		try {
+			result = GenericPostAssembler.toDto(posts);
+		} catch (Exception e) {
+			result.getErrorMessages().add("No posts found");
+			LOGGER.warn("No posts found", e);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -63,21 +83,34 @@ public class PostServiceImpl implements PostService {
 		}
 	}
 
-	private void setPostRegistered(GenericPost post) {
+	@Override
+	public void deletePost(String id) {
+		mongoPostRepository.delete(id);
+	}
+
+	private static void setPostRegistered(GenericPost post) {
 		post.setType(GenericPostType.REGISTERED_POST);
 		post.setDate(getCurrentDate());
 	}
 
-	private String getCurrentDate() {
+	private static String getCurrentDate() {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(DATE_FORMAT);
 		return new DateTime().toString(dateTimeFormatter);
+	}
+
+	private static ObjectId getUserObjectId(String id) throws Exception {
+		if (id != null && id.length() != 0) {
+			return new ObjectId(id);
+		} else {
+			throw new NullPointerException("Illegal user id");
+		}
 	}
 
 	private boolean postUserExists(GenericPost post) {
 		return userService.findUserById(post.getUserId()) != null;
 	}
 
-	private boolean postMatchesLength(GenericPost post) {
+	private static boolean postMatchesLength(GenericPost post) {
 		return post.getText() != null && post.getText().length() > 0;
 	}
 

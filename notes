@@ -1,27 +1,6 @@
--javaagent:/root/.m2/repository/org/springframework/springloaded/1.2.1.RELEASE/springloaded-1.2.1.RELEASE.jar -noverify
-
-
-curl -X POST curl:password@localhost:21056/oauth/token\?grant_type=client_credentials
-http://localhost:21056/oauth/authorize?client_id=web&response_type=token&password=password
-SELECT name FROM sqlite_master WHERE type='table';
-
-localhost:21056/oauth/token?client_id=web&response_type=token&password=password&access_token=f25da75a-5b2f-42be-a263-6dd6a8dc08b2
-
-http://localhost:21056/oauth/authorize?client_id=web&client_secret=password&response_type=token&redirect_uri=http://localhost:8080/api/swagger/index.html
-
-http://localhost:21056/oauth/token?grant_type=refresh_token&refresh_token=92a3f344f2b618863484d006bcc45a59
-
-http://localhost:8080/api/post/get?last=1
-
-
-localhost:21056/oauth/authorize?client_id=poster&redirect_uri=http://192.168.32.174:8080/api/swagger/index.html&response_type=token
-
-
-
-kate /etc/nginx/sites-available/default
-
-http://localhost:8811/poster/app/index.html
-
+http://192.168.32.174:8811/poster/api/swagger/index.html
+http://192.168.32.174:8811/poster/app/index.html
+http://192.168.32.174:8811/poster/api/system/health
 
 rm -rf /srv/mongodb/
 mongod --port 27017 --dbpath /srv/mongodb/rs0-0 --replSet rs0 --smallfiles --oplogSize 128
